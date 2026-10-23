@@ -100,11 +100,12 @@ body.light .progress-bar { background: #e2e8f0; }
 .dash-card .value { font-size: 1.7rem; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; margin-top: 0.2rem; }
 .dash-card .sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 0.3rem; }
 
-/* BOUSSOLE QIBLA */
+/* BOUSSOLE QIBLA ULTRA-FLUIDE */
 .compass-container { background: linear-gradient(135deg, var(--panel), var(--panel-2)); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center; margin-bottom: 1rem; position: relative; overflow: hidden; }
 .compass-dial { width: 260px; height: 260px; margin: 0 auto; position: relative; border-radius: 50%; background: radial-gradient(circle, #1a2333 0%, #0f1521 100%); border: 4px solid var(--border); box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 20px rgba(139,92,246,0.2); display: flex; align-items: center; justify-content: center; }
 .compass-dial::after { content: ''; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 18px solid var(--error); z-index: 10; }
-.compass-needle { width: 12px; height: 220px; position: absolute; transition: transform 0.1s linear; z-index: 5; }
+/* L'aiguille n'utilise plus de transition CSS, c'est le JS qui gère l'animation pour plus de fluidité */
+.compass-needle { width: 12px; height: 220px; position: absolute; z-index: 5; will-change: transform; }
 .compass-needle::before { content: ''; position: absolute; top: 0; left: 0; width: 12px; height: 110px; background: linear-gradient(to bottom, var(--gold), #f59e0b); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(251,191,36,0.8); }
 .compass-needle::after { content: ''; position: absolute; bottom: 0; left: 0; width: 12px; height: 110px; background: linear-gradient(to top, var(--accent-dark), #4c1d95); border-radius: 0 0 6px 6px; }
 .compass-kaaba { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font-size: 1.8rem; z-index: 6; filter: drop-shadow(0 0 8px rgba(251,191,36,0.8)); }
@@ -343,6 +344,7 @@ input[type="range"] { width: 140px; accent-color: var(--accent); }
 </style>
 </head>
 <body>
+<!-- Le corps HTML reste identique, avec la structure de la vue Prière mise à jour -->
 <div class="container">
     <header class="app-header">
         <h1>📖 Qurania</h1>
@@ -615,118 +617,14 @@ const PRAYER_STEPS = [
 
 const PRAYER_FIGURES = {
     qiyam: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="100" cy="280" rx="70" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M40 260 Q100 250 160 260 L170 280 Q100 290 30 280 Z" fill="#334155" opacity="0.6"/>
-        <path d="M50 280 L90 280 L85 290 L55 290 Z" fill="url(#skin)"/>
-        <path d="M110 280 L150 280 L145 290 L115 290 Z" fill="url(#skin)"/>
-        <path d="M60 120 Q100 100 140 120 L155 270 Q100 285 45 270 Z" fill="url(#thobe)" filter="url(#shadow)"/>
-        <path d="M65 120 Q100 110 135 120 L140 200 Q100 215 60 200 Z" fill="#e2e8f0" opacity="0.5"/>
-        <circle cx="100" cy="70" r="35" fill="url(#skin)" filter="url(#shadow)"/>
-        <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
-        <path d="M65 130 Q55 170 80 180 Q90 160 85 130" fill="url(#skin)"/>
-        <path d="M135 130 Q145 170 120 180 Q110 160 115 130" fill="url(#skin)"/>
-    </svg>`,
-    takbir: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="100" cy="280" rx="70" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M40 260 Q100 250 160 260 L170 280 Q100 290 30 280 Z" fill="#334155" opacity="0.6"/>
-        <path d="M50 280 L90 280 L85 290 L55 290 Z" fill="url(#skin2)"/>
-        <path d="M110 280 L150 280 L145 290 L115 290 Z" fill="url(#skin2)"/>
-        <path d="M65 120 Q100 105 135 120 L150 270 Q100 285 50 270 Z" fill="url(#thobe2)" filter="url(#shadow2)"/>
-        <path d="M70 120 Q100 110 130 120 L135 190 Q100 205 65 190 Z" fill="#e2e8f0" opacity="0.5"/>
-        <circle cx="100" cy="70" r="35" fill="url(#skin2)" filter="url(#shadow2)"/>
-        <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
-        <path d="M65 130 Q40 110 30 90" stroke="url(#skin2)" stroke-width="18" stroke-linecap="round" fill="none" filter="url(#shadow2)"/>
-        <path d="M135 130 Q160 110 170 90" stroke="url(#skin2)" stroke-width="18" stroke-linecap="round" fill="none" filter="url(#shadow2)"/>
-    </svg>`,
-    ruku: `<svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="150" cy="220" rx="100" ry="15" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M50 200 Q150 190 250 200 L260 220 Q150 230 40 220 Z" fill="#334155" opacity="0.6"/>
-        <rect x="170" y="120" width="25" height="90" rx="10" fill="url(#skin3)"/>
-        <rect x="205" y="120" width="25" height="90" rx="10" fill="url(#skin3)"/>
-        <path d="M170 130 Q130 80 80 90 L60 120 Q90 135 160 160 Z" fill="url(#thobe3)" filter="url(#shadow3)"/>
-        <circle cx="65" cy="95" r="35" fill="url(#skin3)" filter="url(#shadow3)"/>
-        <path d="M45 80 Q65 70 85 80 L85 95 Q65 105 45 95 Z" fill="#f8fafc"/>
-        <path d="M90 150 L180 180" stroke="url(#skin3)" stroke-width="18" stroke-linecap="round" filter="url(#shadow3)"/>
-        <path d="M110 155 L200 185" stroke="url(#skin3)" stroke-width="18" stroke-linecap="round" filter="url(#shadow3)"/>
-    </svg>`,
-    sujud: `<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow4" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="150" cy="180" rx="130" ry="15" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M20 165 Q150 155 280 165 L290 185 Q150 195 10 185 Z" fill="#334155" opacity="0.6"/>
-        <ellipse cx="240" cy="165" rx="30" ry="15" fill="url(#thobe4)" filter="url(#shadow4)"/>
-        <path d="M240 150 Q180 130 120 140 Q80 150 70 160 L120 175 Q180 155 230 170 Z" fill="url(#thobe4)" filter="url(#shadow4)"/>
-        <circle cx="65" cy="150" r="32" fill="url(#skin4)" filter="url(#shadow4)"/>
-        <path d="M45 140 Q65 130 85 140 L85 150 Q65 160 45 150 Z" fill="#f8fafc"/>
-        <path d="M90 155 L140 175" stroke="url(#skin4)" stroke-width="16" stroke-linecap="round" filter="url(#shadow4)"/>
-        <path d="M110 158 L160 178" stroke="url(#skin4)" stroke-width="16" stroke-linecap="round" filter="url(#shadow4)"/>
-    </svg>`,
-    julus: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow5" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="100" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M30 220 Q100 210 170 220 L180 240 Q100 250 20 240 Z" fill="#334155" opacity="0.6"/>
-        <ellipse cx="100" cy="200" rx="55" ry="35" fill="url(#thobe5)" filter="url(#shadow5)"/>
-        <path d="M70 120 Q100 100 130 120 L145 210 Q100 230 55 210 Z" fill="url(#thobe5)" filter="url(#shadow5)"/>
-        <circle cx="100" cy="70" r="35" fill="url(#skin5)" filter="url(#shadow5)"/>
-        <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
-        <path d="M70 140 Q60 170 75 195" stroke="url(#skin5)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow5)"/>
-        <path d="M130 140 Q140 170 125 195" stroke="url(#skin5)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow5)"/>
-    </svg>`,
-    tashahhud: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow6" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="100" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M30 220 Q100 210 170 220 L180 240 Q100 250 20 240 Z" fill="#334155" opacity="0.6"/>
-        <ellipse cx="100" cy="200" rx="55" ry="35" fill="url(#thobe6)" filter="url(#shadow6)"/>
-        <path d="M70 120 Q100 100 130 120 L145 210 Q100 230 55 210 Z" fill="url(#thobe6)" filter="url(#shadow6)"/>
-        <circle cx="100" cy="70" r="35" fill="url(#skin6)" filter="url(#shadow6)"/>
-        <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
-        <path d="M70 140 Q60 170 75 195" stroke="url(#skin6)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow6)"/>
-        <path d="M130 140 Q150 170 135 190" stroke="url(#skin6)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow6)"/>
-        <path d="M135 190 L140 165" stroke="url(#skin6)" stroke-width="10" stroke-linecap="round" filter="url(#shadow6)"/>
-        <circle cx="140" cy="160" r="6" fill="url(#skin6)"/>
-    </svg>`,
-    taslim: `<svg viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-            <linearGradient id="thobe7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
-            <linearGradient id="skin7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
-            <filter id="shadow7" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
-        </defs>
-        <ellipse cx="110" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
-        <path d="M40 220 Q110 210 180 220 L190 240 Q110 250 30 240 Z" fill="#334155" opacity="0.6"/>
-        <ellipse cx="110" cy="200" rx="55" ry="35" fill="url(#thobe7)" filter="url(#shadow7)"/>
-        <path d="M80 120 Q110 100 140 120 L155 210 Q110 230 65 210 Z" fill="url(#thobe7)" filter="url(#shadow7)"/>
-        <circle cx="120" cy="70" r="35" fill="url(#skin7)" filter="url(#shadow7)"/>
-        <path d="M95 55 Q120 45 145 55 L145 70 Q120 80 95 70 Z" fill="#f8fafc"/>
-        <path d="M150 60 Q170 65 160 90" stroke="url(#skin7)" stroke-width="4" fill="none" opacity="0.6"/>
-        <path d="M80 140 Q70 170 85 195" stroke="url(#skin7)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow7)"/>
-        <path d="M140 140 Q150 170 135 195" stroke="url(#skin7)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow7)"/>
-    </svg>`
+        <defs><linearGradient id="thobe" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs>
+        <ellipse cx="100" cy="280" rx="70" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M40 260 Q100 250 160 260 L170 280 Q100 290 30 280 Z" fill="#334155" opacity="0.6"/><path d="M50 280 L90 280 L85 290 L55 290 Z" fill="url(#skin)"/><path d="M110 280 L150 280 L145 290 L115 290 Z" fill="url(#skin)"/><path d="M60 120 Q100 100 140 120 L155 270 Q100 285 45 270 Z" fill="url(#thobe)" filter="url(#shadow)"/><path d="M65 120 Q100 110 135 120 L140 200 Q100 215 60 200 Z" fill="#e2e8f0" opacity="0.5"/><circle cx="100" cy="70" r="35" fill="url(#skin)" filter="url(#shadow)"/><path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/><path d="M65 130 Q55 170 80 180 Q90 160 85 130" fill="url(#skin)"/><path d="M135 130 Q145 170 120 180 Q110 160 115 130" fill="url(#skin)"/></svg>`,
+    takbir: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="thobe2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs><ellipse cx="100" cy="280" rx="70" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M40 260 Q100 250 160 260 L170 280 Q100 290 30 280 Z" fill="#334155" opacity="0.6"/><path d="M50 280 L90 280 L85 290 L55 290 Z" fill="url(#skin2)"/><path d="M110 280 L150 280 L145 290 L115 290 Z" fill="url(#skin2)"/><path d="M65 120 Q100 105 135 120 L150 270 Q100 285 50 270 Z" fill="url(#thobe2)" filter="url(#shadow2)"/><path d="M70 120 Q100 110 130 120 L135 190 Q100 205 65 190 Z" fill="#e2e8f0" opacity="0.5"/><circle cx="100" cy="70" r="35" fill="url(#skin2)" filter="url(#shadow2)"/><path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/><path d="M65 130 Q40 110 30 90" stroke="url(#skin2)" stroke-width="18" stroke-linecap="round" fill="none" filter="url(#shadow2)"/><path d="M135 130 Q160 110 170 90" stroke="url(#skin2)" stroke-width="18" stroke-linecap="round" fill="none" filter="url(#shadow2)"/></svg>`,
+    ruku: `<svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="thobe3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs><ellipse cx="150" cy="220" rx="100" ry="15" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M50 200 Q150 190 250 200 L260 220 Q150 230 40 220 Z" fill="#334155" opacity="0.6"/><rect x="170" y="120" width="25" height="90" rx="10" fill="url(#skin3)"/><rect x="205" y="120" width="25" height="90" rx="10" fill="url(#skin3)"/><path d="M170 130 Q130 80 80 90 L60 120 Q90 135 160 160 Z" fill="url(#thobe3)" filter="url(#shadow3)"/><circle cx="65" cy="95" r="35" fill="url(#skin3)" filter="url(#shadow3)"/><path d="M45 80 Q65 70 85 80 L85 95 Q65 105 45 95 Z" fill="#f8fafc"/><path d="M90 150 L180 180" stroke="url(#skin3)" stroke-width="18" stroke-linecap="round" filter="url(#shadow3)"/><path d="M110 155 L200 185" stroke="url(#skin3)" stroke-width="18" stroke-linecap="round" filter="url(#shadow3)"/></svg>`,
+    sujud: `<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="thobe4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow4" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs><ellipse cx="150" cy="180" rx="130" ry="15" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M20 165 Q150 155 280 165 L290 185 Q150 195 10 185 Z" fill="#334155" opacity="0.6"/><ellipse cx="240" cy="165" rx="30" ry="15" fill="url(#thobe4)" filter="url(#shadow4)"/><path d="M240 150 Q180 130 120 140 Q80 150 70 160 L120 175 Q180 155 230 170 Z" fill="url(#thobe4)" filter="url(#shadow4)"/><circle cx="65" cy="150" r="32" fill="url(#skin4)" filter="url(#shadow4)"/><path d="M45 140 Q65 130 85 140 L85 150 Q65 160 45 150 Z" fill="#f8fafc"/><path d="M90 155 L140 175" stroke="url(#skin4)" stroke-width="16" stroke-linecap="round" filter="url(#shadow4)"/><path d="M110 158 L160 178" stroke="url(#skin4)" stroke-width="16" stroke-linecap="round" filter="url(#shadow4)"/></svg>`,
+    julus: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="thobe5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow5" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs><ellipse cx="100" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M30 220 Q100 210 170 220 L180 240 Q100 250 20 240 Z" fill="#334155" opacity="0.6"/><ellipse cx="100" cy="200" rx="55" ry="35" fill="url(#thobe5)" filter="url(#shadow5)"/><path d="M70 120 Q100 100 130 120 L145 210 Q100 230 55 210 Z" fill="url(#thobe5)" filter="url(#shadow5)"/><circle cx="100" cy="70" r="35" fill="url(#skin5)" filter="url(#shadow5)"/><path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/><path d="M70 140 Q60 170 75 195" stroke="url(#skin5)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow5)"/><path d="M130 140 Q140 170 125 195" stroke="url(#skin5)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow5)"/></svg>`,
+    tashahhud: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="thobe6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow6" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs><ellipse cx="100" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M30 220 Q100 210 170 220 L180 240 Q100 250 20 240 Z" fill="#334155" opacity="0.6"/><ellipse cx="100" cy="200" rx="55" ry="35" fill="url(#thobe6)" filter="url(#shadow6)"/><path d="M70 120 Q100 100 130 120 L145 210 Q100 230 55 210 Z" fill="url(#thobe6)" filter="url(#shadow6)"/><circle cx="100" cy="70" r="35" fill="url(#skin6)" filter="url(#shadow6)"/><path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/><path d="M70 140 Q60 170 75 195" stroke="url(#skin6)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow6)"/><path d="M130 140 Q150 170 135 190" stroke="url(#skin6)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow6)"/><path d="M135 190 L140 165" stroke="url(#skin6)" stroke-width="10" stroke-linecap="round" filter="url(#shadow6)"/><circle cx="140" cy="160" r="6" fill="url(#skin6)"/></svg>`,
+    taslim: `<svg viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="thobe7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient><linearGradient id="skin7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient><filter id="shadow7" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter></defs><ellipse cx="110" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/><path d="M40 220 Q110 210 180 220 L190 240 Q110 250 30 240 Z" fill="#334155" opacity="0.6"/><ellipse cx="110" cy="200" rx="55" ry="35" fill="url(#thobe7)" filter="url(#shadow7)"/><path d="M80 120 Q110 100 140 120 L155 210 Q110 230 65 210 Z" fill="url(#thobe7)" filter="url(#shadow7)"/><circle cx="120" cy="70" r="35" fill="url(#skin7)" filter="url(#shadow7)"/><path d="M95 55 Q120 45 145 55 L145 70 Q120 80 95 70 Z" fill="#f8fafc"/><path d="M150 60 Q170 65 160 90" stroke="url(#skin7)" stroke-width="4" fill="none" opacity="0.6"/><path d="M80 140 Q70 170 85 195" stroke="url(#skin7)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow7)"/><path d="M140 140 Q150 170 135 195" stroke="url(#skin7)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow7)"/></svg>`
 };
 
 const BADGES = [
@@ -751,8 +649,6 @@ const DAILY_VERSES = [
     { ar:'وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ', tr:'Wa huwa maakum ayna ma kuntum', fr:'Et Il est avec vous où que vous soyez.', ref:'Sourate Al-Hadid, 57:4' },
     { ar:'فَاذْكُرُونِي أَذْكُرْكُمْ', tr:'Fa-dhkuruni adhkurkum', fr:'Souvenez-vous de Moi donc. Je me souviendrai de vous.', ref:'Sourate Al-Baqarah, 2:152' }
 ];
-
-const AUDIO_RECITER = 'ar.alafasy';
 
 const MASCOT_TIPS = [
     "Assalamu alaykum ! Prêt à apprendre ? 🚀",
@@ -962,12 +858,9 @@ function initVoices() {
 function speakArabic(text) {
     if (!text || !('speechSynthesis' in window)) { showToast('🔇 Audio non disponible'); return; }
     const u = new SpeechSynthesisUtterance(text);
-    u.lang = 'ar-SA';
-    u.rate = state.settings.audioRate || 0.85; // Vitesse plus naturelle
-    u.pitch = 1.0;
+    u.lang = 'ar-SA'; u.rate = state.settings.audioRate || 0.85; u.pitch = 1.0;
     if (arabicVoice) u.voice = arabicVoice;
-    speechSynthesis.cancel();
-    speechSynthesis.speak(u);
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
 }
 
 function stopCurrentAudio() {
@@ -980,38 +873,9 @@ function playSurahAudio(surahNumber, ayahNumber) {
     const s = String(surahNumber).padStart(3, '0');
     const a = String(ayahNumber).padStart(3, '0');
     const url = `https://verses.quran.com/Alafasy/mp3/${s}${a}.mp3`;
-    
-    currentAudioId = `verse-${s}-${a}`;
-    currentAudioEl = new Audio(url);
-    currentAudioEl.play().then(() => {
-        showToast('🎧 Récitation en cours...');
-        updateAudioButtons();
-    }).catch(() => {
-        showToast('⚠️ Audio indisponible ou connexion requise.');
-        stopCurrentAudio();
-    });
-    currentAudioEl.addEventListener('ended', () => {
-        currentAudioEl = null; currentAudioId = null; updateAudioButtons();
-    }, { once: true });
-    updateAudioButtons();
-}
-
-function playWordAudio(surahNumber, ayahNumber, wordIndex) {
-    stopCurrentAudio();
-    const s = String(surahNumber).padStart(3, '0');
-    const a = String(ayahNumber).padStart(3, '0');
-    const w = String(wordIndex).padStart(3, '0');
-    const url = `https://audio.qurancdn.com/wbw/${s}_${a}_${w}.mp3`;
-    
-    currentAudioId = `word-${s}-${a}-${w}`;
-    currentAudioEl = new Audio(url);
-    currentAudioEl.play().catch(() => {
-        showToast('⚠️ Audio mot indisponible.');
-        stopCurrentAudio();
-    });
-    currentAudioEl.addEventListener('ended', () => {
-        currentAudioEl = null; currentAudioId = null; updateAudioButtons();
-    }, { once: true });
+    currentAudioId = `verse-${s}-${a}`; currentAudioEl = new Audio(url);
+    currentAudioEl.play().then(() => { showToast('🎧 Récitation en cours...'); updateAudioButtons(); }).catch(() => { showToast('⚠️ Audio indisponible.'); stopCurrentAudio(); });
+    currentAudioEl.addEventListener('ended', () => { currentAudioEl = null; currentAudioId = null; updateAudioButtons(); }, { once: true });
     updateAudioButtons();
 }
 
@@ -1024,79 +888,130 @@ function updateAudioButtons() {
     });
 }
 
-/* ============ BOUSSOLE ULTRA-PRÉCISE ============ */
-let currentHeading = 0;
-let smoothedHeading = 0;
-let qiblaBearing = 0;
-let compassActive = false;
-const KAABA = { lat: 21.4225, lng: 39.8262 };
+/* ============================================================
+   BOUSSOLE ULTRA-FLUIDE (requestAnimationFrame + Interpolation)
+   ============================================================ */
+const Compass = {
+    qiblaBearing: 0,
+    currentRotation: 0,
+    targetRotation: 0,
+    isActive: false,
+    hasSensor: false,
+    
+    init() {
+        const compassInfo = document.getElementById('compass-info');
+        const calibrationHint = document.getElementById('calibration-hint');
+        if (!navigator.geolocation) {
+            if (compassInfo) compassInfo.innerHTML = "⚠️ GPS non supporté par cet appareil.";
+            return;
+        }
 
-function deg2rad(d) { return d * Math.PI / 180; }
-function rad2deg(r) { return r * 180 / Math.PI; }
+        navigator.geolocation.getCurrentPosition((pos) => {
+            this.qiblaBearing = this.calculateBearing(pos.coords.latitude, pos.coords.longitude);
+            if (compassInfo) {
+                compassInfo.innerHTML = `📍 Qibla : <span>${Math.round(this.qiblaBearing)}°</span> depuis le Nord<br><small style="color:var(--text-dim);font-size:0.7rem;">(Précision GPS : ${Math.round(pos.coords.accuracy)}m)</small>`;
+            }
+            this.setupSensor(compassInfo);
+        }, (err) => {
+            if (compassInfo) compassInfo.innerHTML = "⚠️ Veuillez activer la localisation pour calculer la Qibla.";
+        }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 });
+    },
 
-function calculateQiblaBearing(lat, lng) {
-    const φ1 = deg2rad(lat);
-    const φ2 = deg2rad(KAABA.lat);
-    const Δλ = deg2rad(KAABA.lng - lng);
-    const y = Math.sin(Δλ) * Math.cos(φ2);
-    const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
-    return (rad2deg(Math.atan2(y, x)) + 360) % 360;
-}
+    calculateBearing(lat, lng) {
+        const KAABA = { lat: 21.4225, lng: 39.8262 };
+        const φ1 = lat * Math.PI / 180;
+        const φ2 = KAABA.lat * Math.PI / 180;
+        const Δλ = (KAABA.lng - lng) * Math.PI / 180;
+        const y = Math.sin(Δλ) * Math.cos(φ2);
+        const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+        return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    },
 
-function smoothHeading(newHeading) {
-    const alpha = 0.15;
-    let delta = newHeading - smoothedHeading;
-    if (delta > 180) delta -= 360;
-    if (delta < -180) delta += 360;
-    smoothedHeading += alpha * delta;
-    return (smoothedHeading + 360) % 360;
-}
-
-function initCompass() {
-    const compassInfo = document.getElementById('compass-info');
-    const calibrationHint = document.getElementById('calibration-hint');
-    if (!navigator.geolocation) { if (compassInfo) compassInfo.innerHTML = "⚠️ GPS non supporté."; return; }
-
-    navigator.geolocation.getCurrentPosition((pos) => {
-        const { latitude, longitude } = pos.coords;
-        qiblaBearing = calculateQiblaBearing(latitude, longitude);
-        if (compassInfo) compassInfo.innerHTML = `📍 Qibla : <span>${Math.round(qiblaBearing)}°</span> depuis le Nord`;
-
+    setupSensor(compassInfo) {
         if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // iOS
             const btn = document.createElement('button');
-            btn.className = 'btn btn-gold btn-sm'; btn.textContent = '🧭 Activer la boussole'; btn.style.marginTop = '0.5rem';
+            btn.className = 'btn btn-gold btn-sm'; btn.textContent = '🧭 Activer la boussole (iOS)'; btn.style.marginTop = '0.5rem';
             btn.onclick = () => {
                 DeviceOrientationEvent.requestPermission().then(permission => {
-                    if (permission === 'granted') { window.addEventListener('deviceorientation', handleOrientation, true); compassActive = true; btn.remove(); }
-                });
+                    if (permission === 'granted') { this.startListening(); btn.remove(); }
+                }).catch(console.error);
             };
             if (compassInfo) compassInfo.appendChild(btn);
         } else {
-            window.addEventListener('deviceorientationabsolute', handleOrientation, true);
-            window.addEventListener('deviceorientation', handleOrientation, true);
-            compassActive = true;
+            // Android et Desktop
+            this.startListening();
         }
-    }, (err) => { if (compassInfo) compassInfo.innerHTML = "⚠️ Activez la localisation pour la Qibla."; }, { enableHighAccuracy: true });
-}
+    },
 
-function handleOrientation(event) {
-    let heading = null;
-    if (event.webkitCompassHeading !== undefined) heading = event.webkitCompassHeading;
-    else if (event.alpha !== null) heading = 360 - event.alpha;
+    startListening() {
+        this.isActive = true;
+        // Android utilise 'deviceorientationabsolute' de préférence
+        if ('ondeviceorientationabsolute' in window) {
+            window.addEventListener('deviceorientationabsolute', this.handleOrientation.bind(this), true);
+        }
+        // Fallback
+        window.addEventListener('deviceorientation', this.handleOrientation.bind(this), true);
+        this.animate();
+    },
 
-    if (heading === null) return;
+    handleOrientation(event) {
+        let heading = null;
+        // iOS
+        if (event.webkitCompassHeading !== undefined && event.webkitCompassHeading !== null) {
+            heading = event.webkitCompassHeading;
+        } 
+        // Android
+        else if (event.alpha !== null && event.absolute) {
+            heading = 360 - event.alpha;
+        }
+        else if (event.alpha !== null) {
+            // Si pas absolute, on tente quand même (souvent le cas sur PC)
+            heading = 360 - event.alpha;
+        }
 
-    currentHeading = heading;
-    const smoothed = smoothHeading(currentHeading);
-    const rotation = qiblaBearing - smoothed;
+        if (heading === null) return;
 
-    const needle = document.getElementById('compass-needle');
-    if (needle) needle.style.transform = `rotate(${rotation}deg)`;
+        this.hasSensor = true;
+        // L'angle cible est la différence entre la Qibla et notre cap
+        this.targetRotation = this.qiblaBearing - heading;
+        
+        // Gestion de la calibration
+        const hint = document.getElementById('calibration-hint');
+        if (event.webkitCompassAccuracy !== undefined && event.webkitCompassAccuracy > 20) {
+            if (hint) hint.style.display = 'block';
+        } else if (hint) {
+            hint.style.display = 'none';
+        }
+    },
 
-    if (Math.abs(currentHeading - smoothed) > 30) {
-        const hint = document.getElementById('calibration-hint'); if (hint) hint.style.display = 'block';
+    // Boucle d'animation pour une fluidité parfaite (60fps)
+    animate() {
+        if (!this.isActive) return;
+
+        // Calcul de la différence la plus courte
+        let diff = this.targetRotation - this.currentRotation;
+        // Normalisation pour éviter que l'aiguille fasse un tour complet
+        diff = ((diff + 180) % 360) - 180; 
+        
+        // Facteur de lissage adaptatif :
+        // Si la différence est grande (>45°), on tourne vite.
+        // Si elle est petite, on tourne doucement pour éviter les tremblements.
+        const absDiff = Math.abs(diff);
+        let alpha = 0.08; // Lissage par défaut (très fluide)
+        if (absDiff > 45) alpha = 0.3; // Rattrapage rapide
+        else if (absDiff < 5) alpha = 0.05; // Ultra fluide sur les petits mouvements
+
+        this.currentRotation += diff * alpha;
+
+        const needle = document.getElementById('compass-needle');
+        if (needle) {
+            needle.style.transform = `rotate(${this.currentRotation}deg)`;
+        }
+
+        requestAnimationFrame(this.animate.bind(this));
     }
-}
+};
 
 /* ============ UTILS ============ */
 function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
@@ -1106,6 +1021,7 @@ function todayKey() { const d = new Date(); return d.getFullYear() + '-' + (d.ge
 
 function switchView(name) {
     stopCurrentAudio();
+    if (name !== 'prayer') Compass.isActive = false; // Stoppe l'animation si on quitte
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('view-' + name).classList.add('active');
@@ -1376,7 +1292,10 @@ function renderPrayer() {
         </div>
     `;
     renderPractice();
-    setTimeout(initCompass, 100);
+    // Démarre la boussole
+    setTimeout(() => {
+        Compass.init();
+    }, 100);
 }
 
 function renderPractice() {
@@ -1455,7 +1374,7 @@ function renderSettings() {
         <div class="card"><div class="card-title">🎨 Apparence</div><div class="setting-row"><div><div class="s-label">Thème clair</div><div class="s-desc">Basculer entre sombre et clair</div></div><button class="toggle ${state.settings.theme === 'light' ? 'on' : ''}" id="theme-toggle"></button></div></div>
         <div class="card"><div class="card-title">🔊 Audio</div><div class="setting-row"><div><div class="s-label">Effets sonores</div><div class="s-desc">Sons de réussite, erreur, niveau</div></div><button class="toggle ${state.settings.soundEnabled ? 'on' : ''}" id="sound-toggle"></button></div><div class="setting-row"><div><div class="s-label">Vitesse TTS arabe</div><div class="s-desc">${state.settings.audioRate}x (prononciation)</div></div><input type="range" id="audio-rate" min="0.4" max="1.2" step="0.1" value="${state.settings.audioRate}"></div><div class="setting-row"><div><div class="s-label">Tester l'audio</div><div class="s-desc">Écouter « Bismillah »</div></div><button class="btn btn-ghost btn-sm" onclick="speakArabic('بِسْمِ اللَّهِ')">🔊 Tester</button></div></div>
         <div class="card"><div class="card-title">💾 Données</div><div class="setting-row"><div><div class="s-label">Exporter</div><div class="s-desc">Sauvegarder en JSON</div></div><button class="btn btn-ghost btn-sm" onclick="exportData()">📤 Exporter</button></div><div class="setting-row"><div><div class="s-label">Importer</div><div class="s-desc">Restaurer une sauvegarde</div></div><label class="btn btn-ghost btn-sm" style="cursor:pointer;">📥 Importer<input type="file" accept=".json" style="display:none;" onchange="importData(event)"></label></div><div class="setting-row"><div><div class="s-label" style="color:var(--error);">Réinitialiser</div><div class="s-desc">Effacer toute la progression</div></div><button class="btn btn-danger btn-sm" onclick="resetProgress()">🗑️ Reset</button></div></div>
-        <div class="card"><div class="card-title">ℹ️ À propos</div><p style="color:var(--text-dim); font-size:0.85rem; line-height:1.7;"><strong>Qurania v3.3</strong> — Apprends le Coran et la prière en t'amusant.<br>${LETTERS.length} lettres • ${VOCAB.length} mots • ${SURAHS.length} sourates • ${DUAS.length} duas • ${PRAYER_STEPS.length} étapes de prière<br>Audio : récitations Mishary Alafasy via CDN AlQuran.cloud.<br>Données sauvegardées localement.</p></div>
+        <div class="card"><div class="card-title">ℹ️ À propos</div><p style="color:var(--text-dim); font-size:0.85rem; line-height:1.7;"><strong>Qurania v3.4</strong> — Apprends le Coran et la prière en t'amusant.<br>${LETTERS.length} lettres • ${VOCAB.length} mots • ${SURAHS.length} sourates • ${DUAS.length} duas • ${PRAYER_STEPS.length} étapes de prière<br>Audio : récitations Mishary Alafasy via CDN AlQuran.cloud.<br>Données sauvegardées localement.</p></div>
     `;
     document.getElementById('theme-toggle').addEventListener('click', function() { state.settings.theme = state.settings.theme === 'light' ? 'dark' : 'light'; applyTheme(); saveState(); this.classList.toggle('on', state.settings.theme === 'light'); });
     document.getElementById('sound-toggle').addEventListener('click', function() { state.settings.soundEnabled = !state.settings.soundEnabled; saveState(); this.classList.toggle('on', state.settings.soundEnabled); if (state.settings.soundEnabled) playSoundXP(); showToast(state.settings.soundEnabled ? '🔊 Sons activés' : '🔇 Sons désactivés'); });

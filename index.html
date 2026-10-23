@@ -102,20 +102,21 @@ body.light .progress-bar { background: #e2e8f0; }
 
 /* BOUSSOLE QIBLA */
 .compass-container { background: linear-gradient(135deg, var(--panel), var(--panel-2)); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; text-align: center; margin-bottom: 1rem; position: relative; overflow: hidden; }
-.compass-dial { width: 250px; height: 250px; margin: 0 auto; position: relative; border-radius: 50%; background: radial-gradient(circle, #1a2333 0%, #0f1521 100%); border: 4px solid var(--border); box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 20px rgba(139,92,246,0.2); display: flex; align-items: center; justify-content: center; }
-.compass-dial::after { content: ''; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 15px solid var(--error); z-index: 10; }
-.compass-needle { width: 10px; height: 200px; position: absolute; transition: transform 0.3s ease-out; z-index: 5; }
-.compass-needle::before { content: ''; position: absolute; top: 0; left: 0; width: 10px; height: 100px; background: linear-gradient(to bottom, var(--gold), #f59e0b); border-radius: 5px 5px 0 0; box-shadow: 0 0 10px rgba(251,191,36,0.5); }
-.compass-needle::after { content: ''; position: absolute; bottom: 0; left: 0; width: 10px; height: 100px; background: linear-gradient(to top, var(--accent-dark), #4c1d95); border-radius: 0 0 5px 5px; }
-.compass-kaaba { position: absolute; top: 15px; left: 50%; transform: translateX(-50%); font-size: 1.5rem; z-index: 6; }
-.compass-labels { position: absolute; inset: 0; font-size: 0.9rem; font-weight: 700; color: var(--text-dim); }
+.compass-dial { width: 260px; height: 260px; margin: 0 auto; position: relative; border-radius: 50%; background: radial-gradient(circle, #1a2333 0%, #0f1521 100%); border: 4px solid var(--border); box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 0 20px rgba(139,92,246,0.2); display: flex; align-items: center; justify-content: center; }
+.compass-dial::after { content: ''; position: absolute; top: 5px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-top: 18px solid var(--error); z-index: 10; }
+.compass-needle { width: 12px; height: 220px; position: absolute; transition: transform 0.1s linear; z-index: 5; }
+.compass-needle::before { content: ''; position: absolute; top: 0; left: 0; width: 12px; height: 110px; background: linear-gradient(to bottom, var(--gold), #f59e0b); border-radius: 6px 6px 0 0; box-shadow: 0 0 15px rgba(251,191,36,0.8); }
+.compass-needle::after { content: ''; position: absolute; bottom: 0; left: 0; width: 12px; height: 110px; background: linear-gradient(to top, var(--accent-dark), #4c1d95); border-radius: 0 0 6px 6px; }
+.compass-kaaba { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); font-size: 1.8rem; z-index: 6; filter: drop-shadow(0 0 8px rgba(251,191,36,0.8)); }
+.compass-labels { position: absolute; inset: 0; font-size: 1rem; font-weight: 700; color: var(--text-dim); }
 .compass-labels span { position: absolute; }
-.compass-labels .n { top: 10px; left: 50%; transform: translateX(-50%); color: var(--error); font-size: 1.2rem; }
+.compass-labels .n { top: 10px; left: 50%; transform: translateX(-50%); color: var(--error); font-size: 1.3rem; }
 .compass-labels .s { bottom: 10px; left: 50%; transform: translateX(-50%); }
 .compass-labels .e { top: 50%; right: 15px; transform: translateY(-50%); }
 .compass-labels .w { top: 50%; left: 15px; transform: translateY(-50%); }
-.compass-info { margin-top: 1rem; font-size: 0.9rem; color: var(--text); font-weight: 600; }
+.compass-info { margin-top: 1rem; font-size: 0.95rem; color: var(--text); font-weight: 600; }
 .compass-info span { color: var(--gold); }
+.calibration-hint { font-size: 0.75rem; color: var(--warn); margin-top: 0.5rem; text-align: center; display: none; }
 
 /* FIGURES SVG */
 .prayer-positions { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 0.8rem; }
@@ -146,7 +147,7 @@ body.light .progress-bar { background: #e2e8f0; }
 .step-recite .sr-fr { color: var(--text); font-size: 0.78rem; margin-top: 0.15rem; }
 .step-actions { display: flex; gap: 0.35rem; margin-top: 0.4rem; flex-wrap: wrap; }
 
-/* Reste du CSS existant... */
+/* Reste du CSS existant */
 .verse-day { background: linear-gradient(135deg, rgba(139,92,246,0.18), rgba(251,191,36,0.1)); border: 1px solid var(--accent); border-radius: 14px; padding: 1.5rem; text-align: center; margin-bottom: 1rem; position: relative; overflow: hidden; }
 .verse-day .ar { font-family: 'Amiri', serif; font-size: 1.9rem; color: var(--gold); direction: rtl; line-height: 1.8; margin-bottom: 0.8rem; }
 .verse-day .tr { font-style: italic; color: var(--accent-light); font-size: 0.85rem; margin-bottom: 0.4rem; }
@@ -335,9 +336,9 @@ input[type="range"] { width: 140px; accent-color: var(--accent); }
     .step-figure-sm { max-width: 130px; margin: 0 auto; }
     .mascot { width: 45px; height: 45px; }
     .mascot-bubble { font-size: 0.72rem; padding: 0.4rem 0.7rem; }
-    .compass-dial { width: 200px; height: 200px; }
-    .compass-needle { height: 160px; }
-    .compass-needle::before, .compass-needle::after { height: 80px; }
+    .compass-dial { width: 220px; height: 220px; }
+    .compass-needle { height: 180px; }
+    .compass-needle::before, .compass-needle::after { height: 90px; }
 }
 </style>
 </head>
@@ -612,23 +613,12 @@ const PRAYER_STEPS = [
     { n:11, key:'taslim', title:'Taslim — Salutation finale', ar:'التسليم', desc:'Tourner la tête à droite puis à gauche en disant à chaque fois :', recite:{ ar:'السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ', tr:'As-salamu alaykum wa rahmatullah', fr:'Que la paix et la miséricorde d\'Allah soient sur vous' }}
 ];
 
-/* ============================================================
-   NOUVELLES FIGURES SVG HAUTE QUALITÉ
-   ============================================================ */
 const PRAYER_FIGURES = {
     qiyam: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="100" cy="280" rx="70" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M40 260 Q100 250 160 260 L170 280 Q100 290 30 280 Z" fill="#334155" opacity="0.6"/>
@@ -638,25 +628,14 @@ const PRAYER_FIGURES = {
         <path d="M65 120 Q100 110 135 120 L140 200 Q100 215 60 200 Z" fill="#e2e8f0" opacity="0.5"/>
         <circle cx="100" cy="70" r="35" fill="url(#skin)" filter="url(#shadow)"/>
         <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
-        <path d="M75 70 Q100 80 125 70 L125 75 Q100 85 75 75 Z" fill="#f1f5f9"/>
         <path d="M65 130 Q55 170 80 180 Q90 160 85 130" fill="url(#skin)"/>
         <path d="M135 130 Q145 170 120 180 Q110 160 115 130" fill="url(#skin)"/>
-        <ellipse cx="80" cy="185" rx="12" ry="8" fill="url(#skin)"/>
-        <ellipse cx="120" cy="185" rx="12" ry="8" fill="url(#skin)"/>
     </svg>`,
     takbir: `<svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe2" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin2" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow2" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="100" cy="280" rx="70" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M40 260 Q100 250 160 260 L170 280 Q100 290 30 280 Z" fill="#334155" opacity="0.6"/>
@@ -668,22 +647,12 @@ const PRAYER_FIGURES = {
         <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
         <path d="M65 130 Q40 110 30 90" stroke="url(#skin2)" stroke-width="18" stroke-linecap="round" fill="none" filter="url(#shadow2)"/>
         <path d="M135 130 Q160 110 170 90" stroke="url(#skin2)" stroke-width="18" stroke-linecap="round" fill="none" filter="url(#shadow2)"/>
-        <ellipse cx="30" cy="85" rx="10" ry="8" fill="url(#skin2)"/>
-        <ellipse cx="170" cy="85" rx="10" ry="8" fill="url(#skin2)"/>
     </svg>`,
     ruku: `<svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin3" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin3" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow3" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="150" cy="220" rx="100" ry="15" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M50 200 Q150 190 250 200 L260 220 Q150 230 40 220 Z" fill="#334155" opacity="0.6"/>
@@ -694,22 +663,12 @@ const PRAYER_FIGURES = {
         <path d="M45 80 Q65 70 85 80 L85 95 Q65 105 45 95 Z" fill="#f8fafc"/>
         <path d="M90 150 L180 180" stroke="url(#skin3)" stroke-width="18" stroke-linecap="round" filter="url(#shadow3)"/>
         <path d="M110 155 L200 185" stroke="url(#skin3)" stroke-width="18" stroke-linecap="round" filter="url(#shadow3)"/>
-        <ellipse cx="180" cy="180" rx="10" ry="8" fill="url(#skin3)"/>
-        <ellipse cx="200" cy="185" rx="10" ry="8" fill="url(#skin3)"/>
     </svg>`,
     sujud: `<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe4" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin4" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow4" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin4" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow4" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="150" cy="180" rx="130" ry="15" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M20 165 Q150 155 280 165 L290 185 Q150 195 10 185 Z" fill="#334155" opacity="0.6"/>
@@ -722,17 +681,9 @@ const PRAYER_FIGURES = {
     </svg>`,
     julus: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe5" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin5" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow5" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin5" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow5" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="100" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M30 220 Q100 210 170 220 L180 240 Q100 250 20 240 Z" fill="#334155" opacity="0.6"/>
@@ -742,22 +693,12 @@ const PRAYER_FIGURES = {
         <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
         <path d="M70 140 Q60 170 75 195" stroke="url(#skin5)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow5)"/>
         <path d="M130 140 Q140 170 125 195" stroke="url(#skin5)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow5)"/>
-        <ellipse cx="75" cy="195" rx="10" ry="8" fill="url(#skin5)"/>
-        <ellipse cx="125" cy="195" rx="10" ry="8" fill="url(#skin5)"/>
     </svg>`,
     tashahhud: `<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe6" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin6" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow6" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin6" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow6" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="100" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M30 220 Q100 210 170 220 L180 240 Q100 250 20 240 Z" fill="#334155" opacity="0.6"/>
@@ -766,24 +707,15 @@ const PRAYER_FIGURES = {
         <circle cx="100" cy="70" r="35" fill="url(#skin6)" filter="url(#shadow6)"/>
         <path d="M75 55 Q100 45 125 55 L125 70 Q100 80 75 70 Z" fill="#f8fafc"/>
         <path d="M70 140 Q60 170 75 195" stroke="url(#skin6)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow6)"/>
-        <ellipse cx="75" cy="195" rx="10" ry="8" fill="url(#skin6)"/>
         <path d="M130 140 Q150 170 135 190" stroke="url(#skin6)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow6)"/>
         <path d="M135 190 L140 165" stroke="url(#skin6)" stroke-width="10" stroke-linecap="round" filter="url(#shadow6)"/>
         <circle cx="140" cy="160" r="6" fill="url(#skin6)"/>
     </svg>`,
     taslim: `<svg viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
         <defs>
-            <linearGradient id="thobe7" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#f8fafc"/>
-                <stop offset="100%" stop-color="#cbd5e1"/>
-            </linearGradient>
-            <linearGradient id="skin7" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#fcd34d"/>
-                <stop offset="100%" stop-color="#d97706"/>
-            </linearGradient>
-            <filter id="shadow7" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/>
-            </filter>
+            <linearGradient id="thobe7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#f8fafc"/><stop offset="100%" stop-color="#cbd5e1"/></linearGradient>
+            <linearGradient id="skin7" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#fcd34d"/><stop offset="100%" stop-color="#d97706"/></linearGradient>
+            <filter id="shadow7" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#000" flood-opacity="0.4"/></filter>
         </defs>
         <ellipse cx="110" cy="240" rx="80" ry="12" fill="#000" opacity="0.3" filter="blur(4px)"/>
         <path d="M40 220 Q110 210 180 220 L190 240 Q110 250 30 240 Z" fill="#334155" opacity="0.6"/>
@@ -794,8 +726,6 @@ const PRAYER_FIGURES = {
         <path d="M150 60 Q170 65 160 90" stroke="url(#skin7)" stroke-width="4" fill="none" opacity="0.6"/>
         <path d="M80 140 Q70 170 85 195" stroke="url(#skin7)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow7)"/>
         <path d="M140 140 Q150 170 135 195" stroke="url(#skin7)" stroke-width="16" stroke-linecap="round" fill="none" filter="url(#shadow7)"/>
-        <ellipse cx="85" cy="195" rx="10" ry="8" fill="url(#skin7)"/>
-        <ellipse cx="135" cy="195" rx="10" ry="8" fill="url(#skin7)"/>
     </svg>`
 };
 
@@ -823,86 +753,6 @@ const DAILY_VERSES = [
 ];
 
 const AUDIO_RECITER = 'ar.alafasy';
-const AUDIO_RECITATIONS = {
-    fatiha:   { surah:1,   name:'Al-Fatiha',   ar:'الفاتحة',  url:`https://cdn.islamic.network/quran/audio-surah/128/${AUDIO_RECITER}/1.mp3` },
-    ikhlas:   { surah:112, name:'Al-Ikhlas',   ar:'الإخلاص',  url:`https://cdn.islamic.network/quran/audio-surah/128/${AUDIO_RECITER}/112.mp3` },
-    falaq:    { surah:113, name:'Al-Falaq',    ar:'الفلق',    url:`https://cdn.islamic.network/quran/audio-surah/128/${AUDIO_RECITER}/113.mp3` },
-    nas:      { surah:114, name:'An-Nas',      ar:'الناس',    url:`https://cdn.islamic.network/quran/audio-surah/128/${AUDIO_RECITER}/114.mp3` },
-    kawthar:  { surah:108, name:'Al-Kawthar',  ar:'الكوثر',   url:`https://cdn.islamic.network/quran/audio-surah/128/${AUDIO_RECITER}/108.mp3` }
-};
-
-let currentAudioEl = null;
-let currentAudioId = null;
-
-function stopCurrentAudio() {
-    if (currentAudioEl) { try { currentAudioEl.pause(); } catch(e){} }
-    currentAudioEl = null;
-    currentAudioId = null;
-    updateAudioButtons();
-}
-
-function playSurahAudio(id) {
-    if (currentAudioId === id && currentAudioEl) { stopCurrentAudio(); return; }
-    stopCurrentAudio();
-    const recit = AUDIO_RECITATIONS[id];
-    if (!recit) return;
-    currentAudioId = id;
-    currentAudioEl = new Audio(recit.url);
-    currentAudioEl.play().then(() => {
-        showToast('🎧 Lecture : ' + recit.name);
-        updateAudioButtons();
-    }).catch(() => {
-        showToast('⚠️ Audio indisponible — vérifie ta connexion');
-        stopCurrentAudio();
-    });
-    currentAudioEl.addEventListener('ended', () => {
-        currentAudioEl = null;
-        currentAudioId = null;
-        updateAudioButtons();
-    }, { once: true });
-    updateAudioButtons();
-}
-
-function playSequence(ids) {
-    stopCurrentAudio();
-    if (!ids || !ids.length) return;
-    let i = 0;
-    const playNext = () => {
-        if (i >= ids.length) {
-            currentAudioEl = null;
-            currentAudioId = null;
-            updateAudioButtons();
-            showToast('✅ Récitation terminée — Masha Allah !');
-            return;
-        }
-        const id = ids[i++];
-        const recit = AUDIO_RECITATIONS[id];
-        if (!recit) { playNext(); return; }
-        currentAudioId = id;
-        currentAudioEl = new Audio(recit.url);
-        currentAudioEl.addEventListener('ended', playNext, { once: true });
-        currentAudioEl.play().then(() => {
-            updateAudioButtons();
-            showToast('🎧 ' + recit.name + ' (' + i + '/' + ids.length + ')');
-        }).catch(() => {
-            showToast('⚠️ Audio indisponible');
-            currentAudioEl = null;
-            currentAudioId = null;
-            updateAudioButtons();
-        });
-        updateAudioButtons();
-    };
-    playNext();
-}
-
-function updateAudioButtons() {
-    document.querySelectorAll('[data-audio-id]').forEach(el => {
-        const id = el.getAttribute('data-audio-id');
-        el.classList.toggle('playing', currentAudioId === id);
-        const icon = el.querySelector('.recit-icon');
-        if (icon) icon.textContent = (currentAudioId === id) ? '⏹' : '🎧';
-    });
-}
 
 const MASCOT_TIPS = [
     "Assalamu alaykum ! Prêt à apprendre ? 🚀",
@@ -922,7 +772,7 @@ const defaultState = {
     earnedBadges:[], favorites:[], vocabSRS:{},
     lastDailyChallenge:null, prayerStepsSeen:[],
     stats:{ correct:0, wrong:0, history:[] },
-    settings:{ theme:'dark', audioRate:0.7, soundEnabled:true }
+    settings:{ theme:'dark', audioRate:0.85, soundEnabled:true }
 };
 let state = loadState();
 
@@ -996,76 +846,40 @@ function playTone(freq, duration, type, vol) {
         osc.stop(ctx.currentTime + duration);
     } catch(e) {}
 }
-function playSoundCorrect() {
-    playTone(523.25, 0.1, 'sine', 0.15);
-    setTimeout(() => playTone(659.25, 0.15, 'sine', 0.15), 80);
-    setTimeout(() => playTone(783.99, 0.25, 'sine', 0.15), 160);
-}
-function playSoundWrong() {
-    playTone(220, 0.15, 'sawtooth', 0.1);
-    setTimeout(() => playTone(165, 0.3, 'sawtooth', 0.1), 100);
-}
-function playSoundXP() {
-    playTone(880, 0.08, 'sine', 0.08);
-    setTimeout(() => playTone(1174.66, 0.12, 'sine', 0.08), 60);
-}
-function playSoundLevelUp() {
-    [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) =>
-        setTimeout(() => playTone(f, 0.25, 'triangle', 0.14), i * 110));
-}
-function playSoundBadge() {
-    [659.25, 783.99, 1046.5, 1318.5].forEach((f, i) =>
-        setTimeout(() => playTone(f, 0.2, 'triangle', 0.13), i * 90));
-}
+function playSoundCorrect() { playTone(523.25, 0.1, 'sine', 0.15); setTimeout(() => playTone(659.25, 0.15, 'sine', 0.15), 80); setTimeout(() => playTone(783.99, 0.25, 'sine', 0.15), 160); }
+function playSoundWrong() { playTone(220, 0.15, 'sawtooth', 0.1); setTimeout(() => playTone(165, 0.3, 'sawtooth', 0.1), 100); }
+function playSoundXP() { playTone(880, 0.08, 'sine', 0.08); setTimeout(() => playTone(1174.66, 0.12, 'sine', 0.08), 60); }
+function playSoundLevelUp() { [523.25, 659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => setTimeout(() => playTone(f, 0.25, 'triangle', 0.14), i * 110)); }
+function playSoundBadge() { [659.25, 783.99, 1046.5, 1318.5].forEach((f, i) => setTimeout(() => playTone(f, 0.2, 'triangle', 0.13), i * 90)); }
 
 function confetti(count) {
     count = count || 80;
     const canvas = document.createElement('canvas');
     canvas.style.cssText = 'position:fixed;inset:0;pointer-events:none;z-index:999;';
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth; canvas.height = window.innerHeight;
     document.body.appendChild(canvas);
     const ctx = canvas.getContext('2d');
     const colors = ['#fbbf24','#8b5cf6','#10b981','#ef4444','#f59e0b','#ec4899','#14b8a6','#fcd34d'];
     const particles = [];
     for (let i = 0; i < count; i++) {
-        particles.push({
-            x: canvas.width/2, y: canvas.height/2,
-            vx: (Math.random()-0.5)*14, vy: (Math.random()-0.5)*14-5,
-            size: Math.random()*6+4,
-            color: colors[Math.floor(Math.random()*colors.length)],
-            rot: Math.random()*Math.PI*2, vrot: (Math.random()-0.5)*0.3, life:1
-        });
+        particles.push({ x: canvas.width/2, y: canvas.height/2, vx: (Math.random()-0.5)*14, vy: (Math.random()-0.5)*14-5, size: Math.random()*6+4, color: colors[Math.floor(Math.random()*colors.length)], rot: Math.random()*Math.PI*2, vrot: (Math.random()-0.5)*0.3, life:1 });
     }
     function frame() {
         ctx.clearRect(0,0,canvas.width,canvas.height);
         let active = false;
         particles.forEach(p => {
-            p.x += p.vx; p.y += p.vy; p.vy += 0.35;
-            p.rot += p.vrot; p.life -= 0.012;
-            if (p.life > 0) {
-                active = true;
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate(p.rot);
-                ctx.globalAlpha = p.life;
-                ctx.fillStyle = p.color;
-                ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
-                ctx.restore();
-            }
+            p.x += p.vx; p.y += p.vy; p.vy += 0.35; p.rot += p.vrot; p.life -= 0.012;
+            if (p.life > 0) { active = true; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot); ctx.globalAlpha = p.life; ctx.fillStyle = p.color; ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size); ctx.restore(); }
         });
-        if (active) requestAnimationFrame(frame);
-        else canvas.remove();
+        if (active) requestAnimationFrame(frame); else canvas.remove();
     }
     frame();
 }
 
 function showXPFloat(amount) {
     const el = document.createElement('div');
-    el.className = 'xp-float';
-    el.textContent = '+' + amount + ' XP';
-    document.body.appendChild(el);
-    setTimeout(() => el.remove(), 1400);
+    el.className = 'xp-float'; el.textContent = '+' + amount + ' XP';
+    document.body.appendChild(el); setTimeout(() => el.remove(), 1400);
 }
 
 function addXP(amount, reason) {
@@ -1073,33 +887,16 @@ function addXP(amount, reason) {
     state.xp += amount;
     const before = levelFromXP(state.xp - amount);
     const after = levelFromXP(state.xp);
-    saveState();
-    updateHeader();
-    playSoundXP();
-    showXPFloat(amount);
+    saveState(); updateHeader(); playSoundXP(); showXPFloat(amount);
     if (reason) showToast('+' + amount + ' XP — ' + reason);
-    if (after > before) {
-        setTimeout(() => {
-            confetti(120);
-            playSoundLevelUp();
-            showLevelUpModal(after);
-        }, 500);
-        if (after >= 3) awardBadge('level-3');
-    }
+    if (after > before) { setTimeout(() => { confetti(120); playSoundLevelUp(); showLevelUpModal(after); }, 500); if (after >= 3) awardBadge('level-3'); }
 }
 
 function awardBadge(id) {
     if (state.earnedBadges.indexOf(id) !== -1) return;
-    state.earnedBadges.push(id);
-    saveState();
+    state.earnedBadges.push(id); saveState();
     const b = BADGES.find(x => x.id === id);
-    if (b) {
-        setTimeout(() => {
-            showToast('🏅 Badge débloqué : ' + b.name);
-            playSoundBadge();
-            confetti(60);
-        }, 700);
-    }
+    if (b) { setTimeout(() => { showToast('🏅 Badge débloqué : ' + b.name); playSoundBadge(); confetti(60); }, 700); }
 }
 
 function checkBadges() {
@@ -1117,16 +914,7 @@ function checkBadges() {
 
 function showLevelUpModal(level) {
     const modal = document.getElementById('modal');
-    modal.innerHTML = `
-        <div class="modal">
-            <div class="levelup-modal">
-                <div class="lu-icon">🏆</div>
-                <div class="lu-title">Niveau ${level} !</div>
-                <div class="lu-sub">Masha Allah, continue comme ça ! 🎉</div>
-                <button class="btn btn-gold" onclick="closeModal()">Continuer 🚀</button>
-            </div>
-        </div>
-    `;
+    modal.innerHTML = `<div class="modal"><div class="levelup-modal"><div class="lu-icon">🏆</div><div class="lu-title">Niveau ${level} !</div><div class="lu-sub">Masha Allah, continue comme ça ! 🎉</div><button class="btn btn-gold" onclick="closeModal()">Continuer 🚀</button></div></div>`;
     modal.classList.add('visible');
     updateMascotTip("Félicitations ! Niveau " + level + " atteint ! 🎉");
 }
@@ -1135,97 +923,202 @@ function updateHeader() {
     document.getElementById('xp-value').textContent = state.xp;
     document.getElementById('streak-value').textContent = state.streak;
     document.getElementById('level-value').textContent = levelFromXP(state.xp);
-    document.getElementById('learned-count').textContent =
-        state.learnedLetters.length + state.learnedWords.length +
-        state.studiedSurahs.length + state.prayerStepsSeen.length;
+    document.getElementById('learned-count').textContent = state.learnedLetters.length + state.learnedWords.length + state.studiedSurahs.length + state.prayerStepsSeen.length;
 }
 
 let toastTimer;
 function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('visible');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => t.classList.remove('visible'), 2600);
+    const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('visible');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('visible'), 2600);
 }
 
 let mascotTipTimer;
 function updateMascotTip(text) {
-    const tip = document.getElementById('mascot-tip');
-    if (!tip) return;
-    tip.textContent = text;
-    tip.style.animation = 'none';
-    setTimeout(() => { tip.style.animation = 'popIn 0.4s'; }, 10);
+    const tip = document.getElementById('mascot-tip'); if (!tip) return;
+    tip.textContent = text; tip.style.animation = 'none'; setTimeout(() => { tip.style.animation = 'popIn 0.4s'; }, 10);
     clearTimeout(mascotTipTimer);
-    mascotTipTimer = setTimeout(() => {
-        tip.textContent = MASCOT_TIPS[Math.floor(Math.random() * MASCOT_TIPS.length)];
-    }, 8000);
+    mascotTipTimer = setTimeout(() => { tip.textContent = MASCOT_TIPS[Math.floor(Math.random() * MASCOT_TIPS.length)]; }, 8000);
 }
 
+/* ============ AUDIO & TTS ============ */
 let arabicVoice = null;
+let currentAudioEl = null;
+let currentAudioId = null;
+
 function initVoices() {
     if (!('speechSynthesis' in window)) return;
     const pick = () => {
-        const v = speechSynthesis.getVoices();
-        arabicVoice = v.find(x => x.lang.indexOf('ar') === 0) || null;
+        const voices = speechSynthesis.getVoices();
+        const priority = ['ar-SA', 'ar-EG', 'ar'];
+        for (let lang of priority) {
+            const v = voices.find(x => x.lang.startsWith(lang) && x.localService);
+            if (v) { arabicVoice = v; break; }
+        }
+        if (!arabicVoice) arabicVoice = voices.find(x => x.lang.startsWith('ar')) || null;
     };
-    pick();
-    speechSynthesis.onvoiceschanged = pick;
+    pick(); speechSynthesis.onvoiceschanged = pick;
 }
+
 function speakArabic(text) {
-    if (!text) return;
-    if (!('speechSynthesis' in window)) { showToast('🔇 Audio non disponible'); return; }
+    if (!text || !('speechSynthesis' in window)) { showToast('🔇 Audio non disponible'); return; }
     const u = new SpeechSynthesisUtterance(text);
     u.lang = 'ar-SA';
-    u.rate = state.settings.audioRate || 0.7;
+    u.rate = state.settings.audioRate || 0.85; // Vitesse plus naturelle
+    u.pitch = 1.0;
     if (arabicVoice) u.voice = arabicVoice;
     speechSynthesis.cancel();
     speechSynthesis.speak(u);
 }
 
-function shuffle(arr) {
-    const a = arr.slice();
-    for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+function stopCurrentAudio() {
+    if (currentAudioEl) { try { currentAudioEl.pause(); } catch(e){} }
+    currentAudioEl = null; currentAudioId = null; updateAudioButtons();
+}
+
+function playSurahAudio(surahNumber, ayahNumber) {
+    stopCurrentAudio();
+    const s = String(surahNumber).padStart(3, '0');
+    const a = String(ayahNumber).padStart(3, '0');
+    const url = `https://verses.quran.com/Alafasy/mp3/${s}${a}.mp3`;
+    
+    currentAudioId = `verse-${s}-${a}`;
+    currentAudioEl = new Audio(url);
+    currentAudioEl.play().then(() => {
+        showToast('🎧 Récitation en cours...');
+        updateAudioButtons();
+    }).catch(() => {
+        showToast('⚠️ Audio indisponible ou connexion requise.');
+        stopCurrentAudio();
+    });
+    currentAudioEl.addEventListener('ended', () => {
+        currentAudioEl = null; currentAudioId = null; updateAudioButtons();
+    }, { once: true });
+    updateAudioButtons();
+}
+
+function playWordAudio(surahNumber, ayahNumber, wordIndex) {
+    stopCurrentAudio();
+    const s = String(surahNumber).padStart(3, '0');
+    const a = String(ayahNumber).padStart(3, '0');
+    const w = String(wordIndex).padStart(3, '0');
+    const url = `https://audio.qurancdn.com/wbw/${s}_${a}_${w}.mp3`;
+    
+    currentAudioId = `word-${s}-${a}-${w}`;
+    currentAudioEl = new Audio(url);
+    currentAudioEl.play().catch(() => {
+        showToast('⚠️ Audio mot indisponible.');
+        stopCurrentAudio();
+    });
+    currentAudioEl.addEventListener('ended', () => {
+        currentAudioEl = null; currentAudioId = null; updateAudioButtons();
+    }, { once: true });
+    updateAudioButtons();
+}
+
+function updateAudioButtons() {
+    document.querySelectorAll('[data-audio-id]').forEach(el => {
+        const id = el.getAttribute('data-audio-id');
+        el.classList.toggle('playing', currentAudioId === id);
+        const icon = el.querySelector('.recit-icon');
+        if (icon) icon.textContent = (currentAudioId === id) ? '⏹' : '🎧';
+    });
+}
+
+/* ============ BOUSSOLE ULTRA-PRÉCISE ============ */
+let currentHeading = 0;
+let smoothedHeading = 0;
+let qiblaBearing = 0;
+let compassActive = false;
+const KAABA = { lat: 21.4225, lng: 39.8262 };
+
+function deg2rad(d) { return d * Math.PI / 180; }
+function rad2deg(r) { return r * 180 / Math.PI; }
+
+function calculateQiblaBearing(lat, lng) {
+    const φ1 = deg2rad(lat);
+    const φ2 = deg2rad(KAABA.lat);
+    const Δλ = deg2rad(KAABA.lng - lng);
+    const y = Math.sin(Δλ) * Math.cos(φ2);
+    const x = Math.cos(φ1) * Math.sin(φ2) - Math.sin(φ1) * Math.cos(φ2) * Math.cos(Δλ);
+    return (rad2deg(Math.atan2(y, x)) + 360) % 360;
+}
+
+function smoothHeading(newHeading) {
+    const alpha = 0.15;
+    let delta = newHeading - smoothedHeading;
+    if (delta > 180) delta -= 360;
+    if (delta < -180) delta += 360;
+    smoothedHeading += alpha * delta;
+    return (smoothedHeading + 360) % 360;
+}
+
+function initCompass() {
+    const compassInfo = document.getElementById('compass-info');
+    const calibrationHint = document.getElementById('calibration-hint');
+    if (!navigator.geolocation) { if (compassInfo) compassInfo.innerHTML = "⚠️ GPS non supporté."; return; }
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+        const { latitude, longitude } = pos.coords;
+        qiblaBearing = calculateQiblaBearing(latitude, longitude);
+        if (compassInfo) compassInfo.innerHTML = `📍 Qibla : <span>${Math.round(qiblaBearing)}°</span> depuis le Nord`;
+
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            const btn = document.createElement('button');
+            btn.className = 'btn btn-gold btn-sm'; btn.textContent = '🧭 Activer la boussole'; btn.style.marginTop = '0.5rem';
+            btn.onclick = () => {
+                DeviceOrientationEvent.requestPermission().then(permission => {
+                    if (permission === 'granted') { window.addEventListener('deviceorientation', handleOrientation, true); compassActive = true; btn.remove(); }
+                });
+            };
+            if (compassInfo) compassInfo.appendChild(btn);
+        } else {
+            window.addEventListener('deviceorientationabsolute', handleOrientation, true);
+            window.addEventListener('deviceorientation', handleOrientation, true);
+            compassActive = true;
+        }
+    }, (err) => { if (compassInfo) compassInfo.innerHTML = "⚠️ Activez la localisation pour la Qibla."; }, { enableHighAccuracy: true });
+}
+
+function handleOrientation(event) {
+    let heading = null;
+    if (event.webkitCompassHeading !== undefined) heading = event.webkitCompassHeading;
+    else if (event.alpha !== null) heading = 360 - event.alpha;
+
+    if (heading === null) return;
+
+    currentHeading = heading;
+    const smoothed = smoothHeading(currentHeading);
+    const rotation = qiblaBearing - smoothed;
+
+    const needle = document.getElementById('compass-needle');
+    if (needle) needle.style.transform = `rotate(${rotation}deg)`;
+
+    if (Math.abs(currentHeading - smoothed) > 30) {
+        const hint = document.getElementById('calibration-hint'); if (hint) hint.style.display = 'block';
     }
-    return a;
 }
-function escapeAttr(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-function escapeHTML(s) {
-    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-function todayKey() {
-    const d = new Date();
-    return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
-}
+
+/* ============ UTILS ============ */
+function shuffle(arr) { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function escapeAttr(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function escapeHTML(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function todayKey() { const d = new Date(); return d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate(); }
 
 function switchView(name) {
     stopCurrentAudio();
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('view-' + name).classList.add('active');
-    const btn = document.querySelector('.nav-btn[data-view="' + name + '"]');
-    if (btn) btn.classList.add('active');
-    const renders = {
-        home: renderHome, alphabet: renderAlphabet, vocab: renderVocab,
-        surahs: renderSurahs, prayer: renderPrayer, exercises: renderExercises,
-        numbers: renderNumbers, duas: renderDuas, stats: renderStats, settings: renderSettings
-    };
+    const btn = document.querySelector('.nav-btn[data-view="' + name + '"]'); if (btn) btn.classList.add('active');
+    const renders = { home: renderHome, alphabet: renderAlphabet, vocab: renderVocab, surahs: renderSurahs, prayer: renderPrayer, exercises: renderExercises, numbers: renderNumbers, duas: renderDuas, stats: renderStats, settings: renderSettings };
     if (renders[name]) renders[name]();
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-document.querySelectorAll('.nav-btn').forEach(btn => {
-    btn.addEventListener('click', () => switchView(btn.dataset.view));
-});
+document.querySelectorAll('.nav-btn').forEach(btn => { btn.addEventListener('click', () => switchView(btn.dataset.view)); });
 
-function getDailyVerse() {
-    const day = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000);
-    return DAILY_VERSES[day % DAILY_VERSES.length];
-}
+function getDailyVerse() { const day = Math.floor((Date.now() - new Date(new Date().getFullYear(), 0, 0)) / 86400000); return DAILY_VERSES[day % DAILY_VERSES.length]; }
 
+/* ============ VUES ============ */
 function renderHome() {
     const el = document.getElementById('view-home');
     const lvl = levelFromXP(state.xp);
@@ -1234,50 +1127,33 @@ function renderHome() {
     const pct = Math.min(100, Math.round((xpCur / xpNeed) * 100));
     const daily = getDailyVerse();
     const dailyDone = state.lastDailyChallenge === todayKey();
-    const acc = (state.stats.correct + state.stats.wrong) > 0
-        ? Math.round(100 * state.stats.correct / (state.stats.correct + state.stats.wrong)) : 0;
+    const acc = (state.stats.correct + state.stats.wrong) > 0 ? Math.round(100 * state.stats.correct / (state.stats.correct + state.stats.wrong)) : 0;
 
     el.innerHTML = `
         <div class="verse-day">
-            <div class="label-day">✨ Verset du jour</div>
-            <div class="ar">${daily.ar}</div>
-            <div class="tr">${daily.tr}</div>
-            <div class="fr">« ${daily.fr} »</div>
-            <div class="ref">${daily.ref}</div>
+            <div class="label-day">✨ Verset du jour</div><div class="ar">${daily.ar}</div><div class="tr">${daily.tr}</div><div class="fr">« ${daily.fr} »</div><div class="ref">${daily.ref}</div>
             <button class="audio-btn mt-1" onclick="speakArabic('${escapeAttr(daily.ar)}')">🔊 Écouter</button>
         </div>
-
         <div class="dashboard-grid">
-            <div class="dash-card"><div class="icon">⭐</div><div class="label">XP Total</div>
-                <div class="value">${state.xp}</div><div class="sub">Niveau ${lvl}</div></div>
-            <div class="dash-card"><div class="icon">🔥</div><div class="label">Série</div>
-                <div class="value">${state.streak}</div><div class="sub">jour${state.streak > 1 ? 's' : ''} de suite</div></div>
-            <div class="dash-card"><div class="icon">🎯</div><div class="label">Précision</div>
-                <div class="value">${acc}%</div><div class="sub">${state.stats.correct} bonnes réponses</div></div>
-            <div class="dash-card"><div class="icon">🏅</div><div class="label">Badges</div>
-                <div class="value">${state.earnedBadges.length}/${BADGES.length}</div><div class="sub">débloqués</div></div>
+            <div class="dash-card"><div class="icon">⭐</div><div class="label">XP Total</div><div class="value">${state.xp}</div><div class="sub">Niveau ${lvl}</div></div>
+            <div class="dash-card"><div class="icon">🔥</div><div class="label">Série</div><div class="value">${state.streak}</div><div class="sub">jour${state.streak > 1 ? 's' : ''} de suite</div></div>
+            <div class="dash-card"><div class="icon">🎯</div><div class="label">Précision</div><div class="value">${acc}%</div><div class="sub">${state.stats.correct} bonnes réponses</div></div>
+            <div class="dash-card"><div class="icon">🏅</div><div class="label">Badges</div><div class="value">${state.earnedBadges.length}/${BADGES.length}</div><div class="sub">débloqués</div></div>
         </div>
-
         <div class="card">
             <div class="card-title">📈 Progression vers le niveau ${lvl + 1}</div>
             <div class="progress-label"><span>${xpCur} / ${xpNeed} XP</span><span>${pct}%</span></div>
             <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
         </div>
-
         <div class="card">
             <div class="card-title">🎓 Ce que tu as appris</div>
             <div style="display:grid; gap:0.8rem; margin-top:0.5rem;">
-                <div><div class="progress-label"><span>🔤 Alphabet</span><span>${state.learnedLetters.length}/${LETTERS.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedLetters.length/LETTERS.length)*100}%"></div></div></div>
-                <div><div class="progress-label"><span>💡 Vocabulaire</span><span>${state.learnedWords.length}/${VOCAB.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedWords.length/VOCAB.length)*100}%"></div></div></div>
-                <div><div class="progress-label"><span>📜 Sourates</span><span>${state.studiedSurahs.length}/${SURAHS.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.studiedSurahs.length/SURAHS.length)*100}%"></div></div></div>
-                <div><div class="progress-label"><span>🕌 Prière</span><span>${state.prayerStepsSeen.length}/${PRAYER_STEPS.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.prayerStepsSeen.length/PRAYER_STEPS.length)*100}%"></div></div></div>
+                <div><div class="progress-label"><span>🔤 Alphabet</span><span>${state.learnedLetters.length}/${LETTERS.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedLetters.length/LETTERS.length)*100}%"></div></div></div>
+                <div><div class="progress-label"><span>💡 Vocabulaire</span><span>${state.learnedWords.length}/${VOCAB.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedWords.length/VOCAB.length)*100}%"></div></div></div>
+                <div><div class="progress-label"><span>📜 Sourates</span><span>${state.studiedSurahs.length}/${SURAHS.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.studiedSurahs.length/SURAHS.length)*100}%"></div></div></div>
+                <div><div class="progress-label"><span>🕌 Prière</span><span>${state.prayerStepsSeen.length}/${PRAYER_STEPS.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.prayerStepsSeen.length/PRAYER_STEPS.length)*100}%"></div></div></div>
             </div>
         </div>
-
         <div class="card">
             <div class="card-title">🚀 Continuer</div>
             <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
@@ -1288,59 +1164,33 @@ function renderHome() {
                 ${dailyDone ? '' : '<button class="btn btn-gold" onclick="startDailyChallenge()">🌅 Défi du jour</button>'}
             </div>
         </div>
-
         <div class="card">
             <div class="card-title">🏅 Tes badges</div>
-            <div class="badges-grid">
-                ${BADGES.map(b => `<div class="badge-item ${state.earnedBadges.indexOf(b.id) !== -1 ? 'earned' : ''}">
-                    <div class="b-icon">${b.icon}</div>
-                    <div class="b-name">${b.name}</div>
-                    <div class="b-desc">${b.desc}</div>
-                </div>`).join('')}
-            </div>
+            <div class="badges-grid">${BADGES.map(b => `<div class="badge-item ${state.earnedBadges.indexOf(b.id) !== -1 ? 'earned' : ''}"><div class="b-icon">${b.icon}</div><div class="b-name">${b.name}</div><div class="b-desc">${b.desc}</div></div>`).join('')}</div>
         </div>
     `;
 }
 
 function renderAlphabet() {
-    const el = document.getElementById('view-alphabet');
-    el.innerHTML = `
+    document.getElementById('view-alphabet').innerHTML = `
         <h2 class="section-title">🔤 Alphabet arabe</h2>
         <p class="section-subtitle">Clique sur une lettre pour la découvrir, l'écouter et la tracer.</p>
-        <div class="alphabet-grid">
-            ${LETTERS.map((l, i) => `<div class="letter-tile ${state.learnedLetters.indexOf(i) !== -1 ? 'learned' : ''}" onclick="openLetter(${i})">
-                <div class="ar">${l.ar}</div><div class="name">${l.name}</div>
-            </div>`).join('')}
-        </div>
+        <div class="alphabet-grid">${LETTERS.map((l, i) => `<div class="letter-tile ${state.learnedLetters.indexOf(i) !== -1 ? 'learned' : ''}" onclick="openLetter(${i})"><div class="ar">${l.ar}</div><div class="name">${l.name}</div></div>`).join('')}</div>
     `;
 }
-
 function openLetter(i) {
-    const l = LETTERS[i];
-    const learned = state.learnedLetters.indexOf(i) !== -1;
-    const modal = document.getElementById('modal');
-    const ex = l.example.split(' (');
+    const l = LETTERS[i]; const learned = state.learnedLetters.indexOf(i) !== -1;
+    const modal = document.getElementById('modal'); const ex = l.example.split(' (');
     modal.innerHTML = `
         <div class="modal">
-            <div class="big-ar">${l.ar}</div>
-            <div class="modal-name">${l.name}</div>
-            <div class="modal-sound">Son : ${l.sound}</div>
+            <div class="big-ar">${l.ar}</div><div class="modal-name">${l.name}</div><div class="modal-sound">Son : ${l.sound}</div>
             <div class="forms-grid">
-                <div class="form-item"><div class="f-label">Isolée</div><div class="f-ar">${l.forms.iso}</div></div>
-                <div class="form-item"><div class="f-label">Initiale</div><div class="f-ar">${l.forms.ini}</div></div>
-                <div class="form-item"><div class="f-label">Médiane</div><div class="f-ar">${l.forms.med}</div></div>
-                <div class="form-item"><div class="f-label">Finale</div><div class="f-ar">${l.forms.fin}</div></div>
+                <div class="form-item"><div class="f-label">Isolée</div><div class="f-ar">${l.forms.iso}</div></div><div class="form-item"><div class="f-label">Initiale</div><div class="f-ar">${l.forms.ini}</div></div>
+                <div class="form-item"><div class="f-label">Médiane</div><div class="f-ar">${l.forms.med}</div></div><div class="form-item"><div class="f-label">Finale</div><div class="f-ar">${l.forms.fin}</div></div>
             </div>
-            <div class="modal-example">
-                <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.3rem;">Exemple</div>
-                <div style="font-family:'Amiri',serif; font-size:1.5rem; color:var(--gold); direction:rtl;">${ex[0]}</div>
-                <div style="color:var(--text-dim); font-style:italic; font-size:0.8rem;">${ex[1] ? ex[1].replace(')', '') : ''}</div>
-            </div>
+            <div class="modal-example"><div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:0.3rem;">Exemple</div><div style="font-family:'Amiri',serif; font-size:1.5rem; color:var(--gold); direction:rtl;">${ex[0]}</div><div style="color:var(--text-dim); font-style:italic; font-size:0.8rem;">${ex[1] ? ex[1].replace(')', '') : ''}</div></div>
             <div style="font-size:0.75rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em; margin-top:0.6rem;">✍️ Trace la lettre</div>
-            <div class="trace-wrapper">
-                <div class="trace-bg">${l.ar}</div>
-                <canvas id="traceCanvas" width="240" height="240"></canvas>
-            </div>
+            <div class="trace-wrapper"><div class="trace-bg">${l.ar}</div><canvas id="traceCanvas" width="240" height="240"></canvas></div>
             <div class="modal-actions">
                 <button class="btn btn-ghost btn-sm" onclick="speakArabic('${escapeAttr(l.ar)}')">🔊 Écouter</button>
                 <button class="btn btn-ghost btn-sm" onclick="clearTrace()">🗑️ Effacer</button>
@@ -1349,585 +1199,226 @@ function openLetter(i) {
             </div>
         </div>
     `;
-    modal.classList.add('visible');
-    setupTracing();
+    modal.classList.add('visible'); setupTracing();
     if (!learned) {
         document.getElementById('learn-btn').onclick = () => {
-            state.learnedLetters.push(i);
-            saveState();
-            addXP(5, 'Lettre apprise');
-            checkBadges();
-            closeModal();
-            renderAlphabet();
-            updateMascotTip("Masha Allah ! Lettre " + l.name + " apprise ! 🌟");
+            state.learnedLetters.push(i); saveState(); addXP(5, 'Lettre apprise'); checkBadges(); closeModal(); renderAlphabet(); updateMascotTip("Masha Allah ! Lettre " + l.name + " apprise ! 🌟");
         };
     }
 }
-
 function setupTracing() {
-    const c = document.getElementById('traceCanvas');
-    if (!c) return;
-    const ctx = c.getContext('2d');
-    ctx.strokeStyle = '#8b5cf6';
-    ctx.lineWidth = 6;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
+    const c = document.getElementById('traceCanvas'); if (!c) return;
+    const ctx = c.getContext('2d'); ctx.strokeStyle = '#8b5cf6'; ctx.lineWidth = 6; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     let drawing = false, lx = 0, ly = 0;
-    const getPos = (e) => {
-        const r = c.getBoundingClientRect();
-        return { x: (e.clientX - r.left) * (c.width / r.width), y: (e.clientY - r.top) * (c.height / r.height) };
-    };
-    c.addEventListener('pointerdown', (e) => {
-        e.preventDefault(); drawing = true;
-        const p = getPos(e); lx = p.x; ly = p.y;
-        try { c.setPointerCapture(e.pointerId); } catch(_) {}
-    });
-    c.addEventListener('pointermove', (e) => {
-        if (!drawing) return;
-        e.preventDefault();
-        const p = getPos(e);
-        ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(p.x, p.y); ctx.stroke();
-        lx = p.x; ly = p.y;
-    });
-    c.addEventListener('pointerup', () => drawing = false);
-    c.addEventListener('pointercancel', () => drawing = false);
+    const getPos = (e) => { const r = c.getBoundingClientRect(); return { x: (e.clientX - r.left) * (c.width / r.width), y: (e.clientY - r.top) * (c.height / r.height) }; };
+    c.addEventListener('pointerdown', (e) => { e.preventDefault(); drawing = true; const p = getPos(e); lx = p.x; ly = p.y; try { c.setPointerCapture(e.pointerId); } catch(_) {} });
+    c.addEventListener('pointermove', (e) => { if (!drawing) return; e.preventDefault(); const p = getPos(e); ctx.beginPath(); ctx.moveTo(lx, ly); ctx.lineTo(p.x, p.y); ctx.stroke(); lx = p.x; ly = p.y; });
+    c.addEventListener('pointerup', () => drawing = false); c.addEventListener('pointercancel', () => drawing = false);
 }
-function clearTrace() {
-    const c = document.getElementById('traceCanvas');
-    if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height);
-}
+function clearTrace() { const c = document.getElementById('traceCanvas'); if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height); }
 function closeModal() { document.getElementById('modal').classList.remove('visible'); }
 
 let vocabIndex = 0, vocabShuffled = [];
 function renderVocab() {
-    const el = document.getElementById('view-vocab');
-    vocabShuffled = shuffle(VOCAB.map((_, i) => i));
-    vocabIndex = 0;
-    const due = countDueWords();
-    el.innerHTML = `
-        <h2 class="section-title">💡 Vocabulaire</h2>
-        <p class="section-subtitle">Les mots les plus fréquents du Coran.</p>
+    vocabShuffled = shuffle(VOCAB.map((_, i) => i)); vocabIndex = 0; const due = countDueWords();
+    document.getElementById('view-vocab').innerHTML = `
+        <h2 class="section-title">💡 Vocabulaire</h2><p class="section-subtitle">Les mots les plus fréquents du Coran.</p>
         <div class="vocab-controls">
             <button class="btn btn-ghost btn-sm" onclick="modeFlashcards()">📇 Flashcards</button>
             <button class="btn btn-ghost btn-sm" onclick="modeList()">📋 Liste</button>
             <button class="btn btn-gold btn-sm" onclick="startReview()">🔁 Réviser${due > 0 ? ' (' + due + ')' : ''}</button>
-        </div>
-        <div id="vocab-content"></div>
+        </div><div id="vocab-content"></div>
     `;
     modeFlashcards();
 }
-function countDueWords() {
-    const now = Date.now();
-    return Object.keys(state.vocabSRS).filter(k => state.vocabSRS[k].nextReview <= now).length;
-}
+function countDueWords() { const now = Date.now(); return Object.keys(state.vocabSRS).filter(k => state.vocabSRS[k].nextReview <= now).length; }
 function modeFlashcards() {
     const el = document.getElementById('vocab-content');
     if (!vocabShuffled.length) vocabShuffled = shuffle(VOCAB.map((_, i) => i));
-    const idx = vocabShuffled[vocabIndex];
-    const v = VOCAB[idx];
+    const idx = vocabShuffled[vocabIndex]; const v = VOCAB[idx];
     el.innerHTML = `
-        <div class="flashcard" onclick="this.classList.toggle('revealed')">
-            <div class="ar-word">${v.ar}</div>
-            <div class="translit">${v.tr}</div>
-            <div class="translation">${v.fr}</div>
-            <div class="hint">👆 Clique pour révéler</div>
-        </div>
+        <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="ar-word">${v.ar}</div><div class="translit">${v.tr}</div><div class="translation">${v.fr}</div><div class="hint">👆 Clique pour révéler</div></div>
         <div class="vocab-controls" style="margin-top:1.2rem;">
             <button class="btn btn-ghost btn-sm" onclick="prevVocab()">← Précédent</button>
             <button class="btn btn-sm" onclick="speakArabic('${escapeAttr(v.ar)}')">🔊 Écouter</button>
             <button class="btn btn-gold btn-sm" onclick="markWordLearned(${idx})">✓ J'ai appris</button>
             <button class="btn btn-ghost btn-sm" onclick="nextVocab()">Suivant →</button>
         </div>
-        <p style="text-align:center; color:var(--text-dim); font-size:0.8rem; margin-top:1rem;">
-            Carte ${vocabIndex + 1} / ${VOCAB.length} — ${state.learnedWords.length} appris
-        </p>
+        <p style="text-align:center; color:var(--text-dim); font-size:0.8rem; margin-top:1rem;">Carte ${vocabIndex + 1} / ${VOCAB.length} — ${state.learnedWords.length} appris</p>
     `;
 }
 function nextVocab() { vocabIndex = (vocabIndex + 1) % VOCAB.length; modeFlashcards(); }
 function prevVocab() { vocabIndex = (vocabIndex - 1 + VOCAB.length) % VOCAB.length; modeFlashcards(); }
-function markWordLearned(idx) {
-    if (state.learnedWords.indexOf(idx) === -1) {
-        state.learnedWords.push(idx);
-        state.vocabSRS[idx] = { level: 0, nextReview: Date.now() + 86400000 };
-        saveState();
-        addXP(8, 'Mot appris');
-        checkBadges();
-    } else showToast('Déjà appris ✓');
-    nextVocab();
-}
+function markWordLearned(idx) { if (state.learnedWords.indexOf(idx) === -1) { state.learnedWords.push(idx); state.vocabSRS[idx] = { level: 0, nextReview: Date.now() + 86400000 }; saveState(); addXP(8, 'Mot appris'); checkBadges(); } else showToast('Déjà appris ✓'); nextVocab(); }
 function modeList() {
-    const el = document.getElementById('vocab-content');
-    el.innerHTML = `
+    document.getElementById('vocab-content').innerHTML = `
         <input class="search-input" placeholder="🔍 Rechercher..." oninput="filterVocabList(this.value)">
-        <div class="vocab-list" id="vocab-list">
-            ${VOCAB.map((v, i) => {
-                const srs = state.vocabSRS[i];
-                const due = srs && srs.nextReview <= Date.now();
-                return `<div class="vocab-item" data-search="${escapeAttr((v.ar + ' ' + v.tr + ' ' + v.fr).toLowerCase())}">
-                    <div><div class="ar">${v.ar}</div><div class="fr">${v.fr}</div><div class="pron">${v.tr}</div></div>
-                    <div style="display:flex; flex-direction:column; gap:0.3rem; align-items:center;">
-                        ${due ? '<div class="srs-dot due"></div>' : ''}
-                        <button class="audio-btn" onclick="speakArabic('${escapeAttr(v.ar)}')">🔊</button>
-                    </div>
-                </div>`;
-            }).join('')}
-        </div>
+        <div class="vocab-list" id="vocab-list">${VOCAB.map((v, i) => {
+            const srs = state.vocabSRS[i]; const due = srs && srs.nextReview <= Date.now();
+            return `<div class="vocab-item" data-search="${escapeAttr((v.ar + ' ' + v.tr + ' ' + v.fr).toLowerCase())}"><div><div class="ar">${v.ar}</div><div class="fr">${v.fr}</div><div class="pron">${v.tr}</div></div><div style="display:flex; flex-direction:column; gap:0.3rem; align-items:center;">${due ? '<div class="srs-dot due"></div>' : ''}<button class="audio-btn" onclick="speakArabic('${escapeAttr(v.ar)}')">🔊</button></div></div>`;
+        }).join('')}</div>
     `;
 }
-function filterVocabList(q) {
-    q = (q || '').toLowerCase().trim();
-    document.querySelectorAll('#vocab-list .vocab-item').forEach(item => {
-        item.style.display = (item.getAttribute('data-search') || '').indexOf(q) !== -1 ? '' : 'none';
-    });
-}
+function filterVocabList(q) { q = (q || '').toLowerCase().trim(); document.querySelectorAll('#vocab-list .vocab-item').forEach(item => { item.style.display = (item.getAttribute('data-search') || '').indexOf(q) !== -1 ? '' : 'none'; }); }
 let reviewQueue = [], reviewIdx = 0;
-function startReview() {
-    const now = Date.now();
-    reviewQueue = Object.keys(state.vocabSRS).filter(k => state.vocabSRS[k].nextReview <= now).map(k => parseInt(k, 10));
-    if (!reviewQueue.length) { showToast('✅ Rien à réviser !'); return; }
-    reviewQueue = shuffle(reviewQueue);
-    reviewIdx = 0;
-    renderReviewCard();
-}
+function startReview() { const now = Date.now(); reviewQueue = Object.keys(state.vocabSRS).filter(k => state.vocabSRS[k].nextReview <= now).map(k => parseInt(k, 10)); if (!reviewQueue.length) { showToast('✅ Rien à réviser !'); return; } reviewQueue = shuffle(reviewQueue); reviewIdx = 0; renderReviewCard(); }
 function renderReviewCard() {
     const el = document.getElementById('vocab-content');
-    if (reviewIdx >= reviewQueue.length) {
-        el.innerHTML = `<div class="quiz-panel result-panel">
-            <div class="big-emoji">✅</div><div class="result-title">Révision terminée !</div>
-            <div class="result-score">${reviewQueue.length} mot(s) révisé(s)</div>
-            <button class="btn btn-gold" onclick="modeFlashcards()">📇 Retour</button>
-        </div>`;
-        return;
-    }
-    const idx = reviewQueue[reviewIdx];
-    const v = VOCAB[idx];
+    if (reviewIdx >= reviewQueue.length) { el.innerHTML = `<div class="quiz-panel result-panel"><div class="big-emoji">✅</div><div class="result-title">Révision terminée !</div><div class="result-score">${reviewQueue.length} mot(s) révisé(s)</div><button class="btn btn-gold" onclick="modeFlashcards()">📇 Retour</button></div>`; return; }
+    const idx = reviewQueue[reviewIdx]; const v = VOCAB[idx];
     el.innerHTML = `
-        <div style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-bottom:1rem;">
-            Révision ${reviewIdx + 1} / ${reviewQueue.length}
-        </div>
-        <div class="flashcard" onclick="this.classList.toggle('revealed')">
-            <div class="ar-word">${v.ar}</div><div class="translit">${v.tr}</div>
-            <div class="translation">${v.fr}</div><div class="hint">👆 Clique pour révéler</div>
-        </div>
-        <div class="vocab-controls" style="margin-top:1.2rem;">
-            <button class="btn btn-sm" onclick="speakArabic('${escapeAttr(v.ar)}')">🔊</button>
-            <button class="btn btn-ghost btn-sm" onclick="answerReview(${idx}, false)">❌ À revoir</button>
-            <button class="btn btn-gold btn-sm" onclick="answerReview(${idx}, true)">✅ Bien</button>
-        </div>
+        <div style="text-align:center; color:var(--text-dim); font-size:0.85rem; margin-bottom:1rem;">Révision ${reviewIdx + 1} / ${reviewQueue.length}</div>
+        <div class="flashcard" onclick="this.classList.toggle('revealed')"><div class="ar-word">${v.ar}</div><div class="translit">${v.tr}</div><div class="translation">${v.fr}</div><div class="hint">👆 Clique pour révéler</div></div>
+        <div class="vocab-controls" style="margin-top:1.2rem;"><button class="btn btn-sm" onclick="speakArabic('${escapeAttr(v.ar)}')">🔊</button><button class="btn btn-ghost btn-sm" onclick="answerReview(${idx}, false)">❌ À revoir</button><button class="btn btn-gold btn-sm" onclick="answerReview(${idx}, true)">✅ Bien</button></div>
     `;
 }
-function answerReview(idx, correct) {
-    const s = state.vocabSRS[idx];
-    if (!s) { reviewIdx++; renderReviewCard(); return; }
-    if (correct) {
-        s.level = Math.min(s.level + 1, 5);
-        const iv = [1, 2, 4, 8, 16, 32];
-        s.nextReview = Date.now() + iv[s.level] * 86400000;
-        addXP(5, 'Révision');
-    } else { s.level = 0; s.nextReview = Date.now() + 86400000; }
-    saveState();
-    reviewIdx++;
-    renderReviewCard();
-}
+function answerReview(idx, correct) { const s = state.vocabSRS[idx]; if (!s) { reviewIdx++; renderReviewCard(); return; } if (correct) { s.level = Math.min(s.level + 1, 5); const iv = [1, 2, 4, 8, 16, 32]; s.nextReview = Date.now() + iv[s.level] * 86400000; addXP(5, 'Révision'); } else { s.level = 0; s.nextReview = Date.now() + 86400000; } saveState(); reviewIdx++; renderReviewCard(); }
 
 function renderSurahs() {
-    const el = document.getElementById('view-surahs');
-    el.innerHTML = `
-        <h2 class="section-title">📜 Sourates courtes</h2>
-        <p class="section-subtitle">Écoute, lis et comprends avec la récitation complète.</p>
+    document.getElementById('view-surahs').innerHTML = `
+        <h2 class="section-title">📜 Sourates courtes</h2><p class="section-subtitle">Écoute, lis et comprends avec la récitation humaine.</p>
         <input class="search-input" placeholder="🔍 Rechercher..." oninput="filterSurahList(this.value)">
-        <div class="surah-list" id="surah-list">
-            ${SURAHS.map(s => {
-                const isFav = state.favorites.indexOf(s.id) !== -1;
-                const studied = state.studiedSurahs.indexOf(s.id) !== -1;
-                const hasAudio = AUDIO_RECITATIONS[s.id];
-                return `<div class="surah-card ${isFav ? 'favorite' : ''}" id="surah-${s.id}" data-search="${escapeAttr((s.name + ' ' + s.meaning + ' ' + s.ar).toLowerCase())}">
-                    <div class="surah-header" onclick="toggleSurah('${s.id}')">
-                        <div>
-                            <div class="surah-name">${s.name}${studied ? ' ✓' : ''}</div>
-                            <div class="surah-meta">${s.meaning} — ${s.nbVerses} versets</div>
-                        </div>
-                        <div style="display:flex; align-items:center; gap:0.4rem;">
-                            <div class="surah-ar">${s.ar}</div>
-                            ${hasAudio ? `<button class="audio-btn" data-audio-id="${s.id}" onclick="event.stopPropagation(); playSurahAudio('${s.id}')"><span class="recit-icon">🎧</span> Écouter</button>` : ''}
-                            <button class="fav-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${s.id}')">${isFav ? '★' : '☆'}</button>
-                        </div>
+        <div class="surah-list" id="surah-list">${SURAHS.map(s => {
+            const isFav = state.favorites.indexOf(s.id) !== -1; const studied = state.studiedSurahs.indexOf(s.id) !== -1;
+            return `<div class="surah-card ${isFav ? 'favorite' : ''}" id="surah-${s.id}" data-search="${escapeAttr((s.name + ' ' + s.meaning + ' ' + s.ar).toLowerCase())}">
+                <div class="surah-header" onclick="toggleSurah('${s.id}')">
+                    <div><div class="surah-name">${s.name}${studied ? ' ✓' : ''}</div><div class="surah-meta">${s.meaning} — ${s.nbVerses} versets</div></div>
+                    <div style="display:flex; align-items:center; gap:0.4rem;">
+                        <div class="surah-ar">${s.ar}</div>
+                        <button class="audio-btn" onclick="event.stopPropagation(); playSurahAudio(${s.surahNumber}, 1)">🎧 Écouter</button>
+                        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="event.stopPropagation(); toggleFavorite('${s.id}')">${isFav ? '★' : '☆'}</button>
                     </div>
-                    <div class="surah-body">
-                        ${hasAudio ? `<div style="margin:0.8rem 0; text-align:center;">
-                            <button class="btn btn-gold btn-sm" data-audio-id="${s.id}" onclick="event.stopPropagation(); playSurahAudio('${s.id}')">
-                                <span class="recit-icon">🎧</span> Écouter la sourate complète
-                            </button>
-                        </div>` : ''}
-                        ${s.verses.map((v, i) => `<div class="verse">
-                            <div class="verse-ar">${v.ar} <span style="color:var(--accent); font-size:0.9rem;">﴿${i + 1}﴾</span></div>
-                            <div class="verse-tr">${v.tr}</div>
-                            <div class="verse-fr">${v.fr}</div>
-                            <button class="audio-btn" onclick="event.stopPropagation(); speakArabic('${escapeAttr(v.ar)}')">🔊 Écouter le verset</button>
-                        </div>`).join('')}
-                        <div style="margin-top:1rem; text-align:center;">
-                            <button class="btn btn-gold btn-sm" onclick="event.stopPropagation(); markSurahStudied('${s.id}')">✓ J'ai étudié cette sourate</button>
+                </div>
+                <div class="surah-body">
+                    <div style="margin:0.8rem 0; text-align:center;"><button class="btn btn-gold btn-sm" onclick="event.stopPropagation(); playSurahAudio(${s.surahNumber}, 1)">🎧 Écouter la sourate complète</button></div>
+                    ${s.verses.map((v, i) => `<div class="verse">
+                        <div class="verse-ar">${v.ar} <span style="color:var(--accent); font-size:0.9rem;">﴿${i + 1}﴾</span></div>
+                        <div class="verse-tr">${v.tr}</div><div class="verse-fr">${v.fr}</div>
+                        <div style="display:flex; gap:0.3rem; margin-top:0.4rem;">
+                            <button class="audio-btn" onclick="playSurahAudio(${s.surahNumber}, ${i+1})">🎧 Écouter le verset</button>
                         </div>
-                    </div>
-                </div>`;
-            }).join('')}
-        </div>
+                    </div>`).join('')}
+                    <div style="margin-top:1rem; text-align:center;"><button class="btn btn-gold btn-sm" onclick="event.stopPropagation(); markSurahStudied('${s.id}')">✓ J'ai étudié cette sourate</button></div>
+                </div>
+            </div>`;
+        }).join('')}</div>
     `;
 }
-function filterSurahList(q) {
-    q = (q || '').toLowerCase().trim();
-    document.querySelectorAll('#surah-list .surah-card').forEach(item => {
-        item.style.display = (item.getAttribute('data-search') || '').indexOf(q) !== -1 ? '' : 'none';
-    });
-}
-function toggleSurah(id) {
-    document.getElementById('surah-' + id).classList.toggle('open');
-}
-function toggleFavorite(id) {
-    const i = state.favorites.indexOf(id);
-    if (i === -1) state.favorites.push(id); else state.favorites.splice(i, 1);
-    saveState();
-    renderSurahs();
-}
-function markSurahStudied(id) {
-    if (state.studiedSurahs.indexOf(id) === -1) {
-        state.studiedSurahs.push(id);
-        saveState();
-        addXP(15, 'Sourate étudiée');
-        checkBadges();
-        showToast('✓ Sourate étudiée');
-        renderSurahs();
-    } else showToast('Déjà étudiée ✓');
-}
+function filterSurahList(q) { q = (q || '').toLowerCase().trim(); document.querySelectorAll('#surah-list .surah-card').forEach(item => { item.style.display = (item.getAttribute('data-search') || '').indexOf(q) !== -1 ? '' : 'none'; }); }
+function toggleSurah(id) { document.getElementById('surah-' + id).classList.toggle('open'); }
+function toggleFavorite(id) { const i = state.favorites.indexOf(id); if (i === -1) state.favorites.push(id); else state.favorites.splice(i, 1); saveState(); renderSurahs(); }
+function markSurahStudied(id) { if (state.studiedSurahs.indexOf(id) === -1) { state.studiedSurahs.push(id); saveState(); addXP(15, 'Sourate étudiée'); checkBadges(); showToast('✓ Sourate étudiée'); renderSurahs(); } else showToast('Déjà étudiée ✓'); }
 
-/* ============ PRIÈRE & BOUSSOLE ============ */
 let practiceStep = 0;
-let qiblaHeading = 0;
-let deviceHeading = 0;
-
-function getQiblaAngle(lat, lon) {
-    const kaabaLat = 21.4225 * Math.PI / 180;
-    const kaabaLon = 39.8262 * Math.PI / 180;
-    const userLat = lat * Math.PI / 180;
-    const userLon = lon * Math.PI / 180;
-    const y = Math.sin(kaabaLon - userLon);
-    const x = Math.cos(userLat) * Math.tan(kaabaLat) - Math.sin(userLat) * Math.cos(kaabaLon - userLon);
-    let qibla = Math.atan2(y, x) * 180 / Math.PI;
-    return qibla;
-}
-
-function initCompass() {
-    const compassNeedle = document.getElementById('compass-needle');
-    const compassInfo = document.getElementById('compass-info');
-    
-    if (!navigator.geolocation) {
-        if (compassInfo) compassInfo.innerHTML = "⚠️ GPS non supporté par cet appareil.";
-        return;
-    }
-
-    navigator.geolocation.getCurrentPosition((pos) => {
-        const qibla = getQiblaAngle(pos.coords.latitude, pos.coords.longitude);
-        qiblaHeading = qibla;
-        
-        if (window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientationabsolute', handleOrientation, true);
-            window.addEventListener('deviceorientation', handleOrientation, true);
-            
-            // iOS requires permission
-            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-                if (compassInfo) compassInfo.innerHTML = `<button class="btn btn-gold btn-sm" onclick="requestCompassPermission()">🧭 Activer la boussole</button>`;
-            } else {
-                if (compassInfo) compassInfo.innerHTML = `📍 Qibla : <span>${Math.round(qibla)}°</span> depuis le Nord`;
-            }
-        } else {
-            if (compassInfo) compassInfo.innerHTML = `📍 Qibla : <span>${Math.round(qibla)}°</span> (Boussole non supportée)`;
-        }
-    }, (err) => {
-        if (compassInfo) compassInfo.innerHTML = "⚠️ Activez la localisation pour voir la Qibla.";
-    }, { enableHighAccuracy: true });
-}
-
-function requestCompassPermission() {
-    DeviceOrientationEvent.requestPermission().then(response => {
-        if (response === 'granted') {
-            window.addEventListener('deviceorientation', handleOrientation, true);
-            const compassInfo = document.getElementById('compass-info');
-            if (compassInfo) compassInfo.innerHTML = `📍 Qibla : <span>${Math.round(qiblaHeading)}°</span> depuis le Nord`;
-        }
-    }).catch(console.error);
-}
-
-function handleOrientation(event) {
-    let heading = event.webkitCompassHeading || event.alpha;
-    if (heading === null || heading === undefined) return;
-    
-    deviceHeading = heading;
-    const compassNeedle = document.getElementById('compass-needle');
-    
-    if (compassNeedle) {
-        // On fait pivoter l'aiguille pour qu'elle pointe vers la Qibla
-        // Si l'appareil tourne à droite (heading augmente), l'aiguille tourne à gauche
-        const rotation = qiblaHeading - deviceHeading;
-        compassNeedle.style.transform = `rotate(${rotation}deg)`;
-    }
-}
-
 function renderPrayer() {
-    const el = document.getElementById('view-prayer');
     practiceStep = 0;
-    el.innerHTML = `
-        <div class="prayer-hero">
-            <div class="ph-ar">الصلاة</div>
-            <div class="ph-title">Apprendre la prière de A à Z</div>
-            <div class="ph-sub">Guide complet, illustré et interactif</div>
-        </div>
-
-        <!-- BOUSSOLE QIBLA -->
+    document.getElementById('view-prayer').innerHTML = `
+        <div class="prayer-hero"><div class="ph-ar">الصلاة</div><div class="ph-title">Apprendre la prière de A à Z</div><div class="ph-sub">Guide complet, illustré et interactif</div></div>
         <div class="card" style="border-color:var(--gold);">
             <div class="card-title">🧭 Boussole Qibla</div>
             <div class="compass-container">
-                <div class="compass-dial">
-                    <div class="compass-kaaba">🕋</div>
-                    <div class="compass-needle" id="compass-needle"></div>
-                    <div class="compass-labels">
-                        <span class="n">N</span>
-                        <span class="s">S</span>
-                        <span class="e">E</span>
-                        <span class="w">O</span>
-                    </div>
-                </div>
+                <div class="compass-dial"><div class="compass-kaaba">🕋</div><div class="compass-needle" id="compass-needle"></div><div class="compass-labels"><span class="n">N</span><span class="s">S</span><span class="e">E</span><span class="w">O</span></div></div>
                 <div class="compass-info" id="compass-info">Recherche de votre position...</div>
-                <p style="font-size:0.75rem; color:var(--text-dim); margin-top:0.5rem;">
-                    Placez votre téléphone à plat. La flèche dorée indique la direction de La Mecque.
-                </p>
+                <div class="calibration-hint" id="calibration-hint">🔄 Bougez votre téléphone en formant un 8 pour calibrer la boussole.</div>
+                <p style="font-size:0.75rem; color:var(--text-dim); margin-top:0.5rem;">Placez votre téléphone à plat. La flèche dorée indique la direction de La Mecque.</p>
             </div>
         </div>
-
         <div class="card" style="border-color:var(--gold);">
-            <div class="card-title">🎧 Récitations complètes — Mishary Alafasy</div>
-            <p style="color:var(--text-dim); font-size:0.82rem; margin-bottom:0.8rem;">
-                Écoute la Fatiha et les sourates courtes en entier, récitées par un récitateur professionnel.
-            </p>
+            <div class="card-title">🎧 Récitations humaines — Mishary Alafasy</div>
+            <p style="color:var(--text-dim); font-size:0.82rem; margin-bottom:0.8rem;">Écoutez la Fatiha et les sourates courtes en entier, pour une prononciation parfaite.</p>
             <div class="recit-list">
-                <button class="recit-card" data-audio-id="fatiha" onclick="playSurahAudio('fatiha')">
-                    <div class="recit-info"><div class="recit-name">Al-Fatiha</div><div class="recit-ar">الفاتحة</div><div class="recit-meta">Récitée dans chaque rak'a — 7 versets</div></div>
-                    <div class="recit-btn"><span class="recit-icon">🎧</span></div>
-                </button>
-                <button class="recit-card" data-audio-id="ikhlas" onclick="playSurahAudio('ikhlas')">
-                    <div class="recit-info"><div class="recit-name">Al-Ikhlas</div><div class="recit-ar">الإخلاص</div><div class="recit-meta">Souvent récitée après la Fatiha</div></div>
-                    <div class="recit-btn"><span class="recit-icon">🎧</span></div>
-                </button>
+                <button class="recit-card" onclick="playSurahAudio(1, 1)"><div class="recit-info"><div class="recit-name">Al-Fatiha</div><div class="recit-ar">الفاتحة</div><div class="recit-meta">Récitée dans chaque rak'a — 7 versets</div></div><div class="recit-btn"><span class="recit-icon">🎧</span></div></button>
+                <button class="recit-card" onclick="playSurahAudio(112, 1)"><div class="recit-info"><div class="recit-name">Al-Ikhlas</div><div class="recit-ar">الإخلاص</div><div class="recit-meta">Souvent récitée après la Fatiha</div></div><div class="recit-btn"><span class="recit-icon">🎧</span></div></button>
             </div>
-            <button class="btn btn-gold recit-sequence-btn" onclick="playSequence(['fatiha','ikhlas'])">
-                🎧 Écouter Fatiha + Al-Ikhlas (comme dans la prière)
-            </button>
         </div>
-
         <div class="card">
             <div class="card-title">🕐 Les 5 prières quotidiennes</div>
-            <div class="prayer-grid">
-                ${PRAYERS.map(p => `<div class="prayer-card">
-                    <div class="p-icon">${p.icon}</div>
-                    <div class="p-ar">${p.ar}</div>
-                    <div class="p-name">${p.name}</div>
-                    <div class="p-time">${p.time}</div>
-                    <div class="p-rakat">${p.rakats} rak'a</div>
-                    <div class="p-sunnah">${p.sunnah}</div>
-                </div>`).join('')}
-            </div>
-            <p style="text-align:center; color:var(--text-dim); font-size:0.78rem; margin-top:1rem;">
-                💡 Total : 17 rak'a obligatoires par jour
-            </p>
+            <div class="prayer-grid">${PRAYERS.map(p => `<div class="prayer-card"><div class="p-icon">${p.icon}</div><div class="p-ar">${p.ar}</div><div class="p-name">${p.name}</div><div class="p-time">${p.time}</div><div class="p-rakat">${p.rakats} rak'a</div><div class="p-sunnah">${p.sunnah}</div></div>`).join('')}</div>
+            <p style="text-align:center; color:var(--text-dim); font-size:0.78rem; margin-top:1rem;">💡 Total : 17 rak'a obligatoires par jour</p>
         </div>
-
         <div class="card">
             <div class="card-title">💧 Les ablutions (Wudu) — 10 étapes</div>
-            <p style="color:var(--text-dim); font-size:0.82rem; margin-bottom:0.8rem;">
-                Obligatoires avant chaque prière. Commence toujours par la droite.
-            </p>
-            <div class="wudu-list">
-                ${WUDU_STEPS.map(s => `<div class="wudu-step">
-                    <div class="w-num">${s.n}</div>
-                    <div class="w-body">
-                        <div class="w-title">${s.title}</div>
-                        <div class="w-ar">${s.ar}</div>
-                        <div class="w-desc">${s.desc}</div>
-                    </div>
-                </div>`).join('')}
-            </div>
+            <div class="wudu-list">${WUDU_STEPS.map(s => `<div class="wudu-step"><div class="w-num">${s.n}</div><div class="w-body"><div class="w-title">${s.title}</div><div class="w-ar">${s.ar}</div><div class="w-desc">${s.desc}</div></div></div>`).join('')}</div>
         </div>
-
         <div class="card">
             <div class="card-title">🧎 Les 6 positions de la prière</div>
-            <p style="color:var(--text-dim); font-size:0.82rem; margin-bottom:0.8rem;">
-                Illustrations détaillées. Cliquez pour entendre le nom en arabe.
-            </p>
             <div class="prayer-positions">
-                <div class="position-tile" onclick="speakArabic('القيام')">
-                    <div class="pt-figure">${PRAYER_FIGURES.qiyam}</div>
-                    <div class="pt-name">Qiyam</div>
-                    <div class="pt-ar">القيام — Debout</div>
-                </div>
-                <div class="position-tile" onclick="speakArabic('الركوع')">
-                    <div class="pt-figure">${PRAYER_FIGURES.ruku}</div>
-                    <div class="pt-name">Ruku</div>
-                    <div class="pt-ar">الركوع — Inclinaison</div>
-                </div>
-                <div class="position-tile" onclick="speakArabic('السجود')">
-                    <div class="pt-figure">${PRAYER_FIGURES.sujud}</div>
-                    <div class="pt-name">Sujud</div>
-                    <div class="pt-ar">السجود — Prosternation</div>
-                </div>
-                <div class="position-tile" onclick="speakArabic('الجلسة')">
-                    <div class="pt-figure">${PRAYER_FIGURES.julus}</div>
-                    <div class="pt-name">Julus</div>
-                    <div class="pt-ar">الجلسة — Assis</div>
-                </div>
-                <div class="position-tile" onclick="speakArabic('التشهد')">
-                    <div class="pt-figure">${PRAYER_FIGURES.tashahhud}</div>
-                    <div class="pt-name">Tashahhud</div>
-                    <div class="pt-ar">التشهد — Doigt levé</div>
-                </div>
-                <div class="position-tile" onclick="speakArabic('التسليم')">
-                    <div class="pt-figure">${PRAYER_FIGURES.taslim}</div>
-                    <div class="pt-name">Taslim</div>
-                    <div class="pt-ar">التسليم — Salutation</div>
-                </div>
+                <div class="position-tile" onclick="speakArabic('القيام')"><div class="pt-figure">${PRAYER_FIGURES.qiyam}</div><div class="pt-name">Qiyam</div><div class="pt-ar">القيام — Debout</div></div>
+                <div class="position-tile" onclick="speakArabic('الركوع')"><div class="pt-figure">${PRAYER_FIGURES.ruku}</div><div class="pt-name">Ruku</div><div class="pt-ar">الركوع — Inclinaison</div></div>
+                <div class="position-tile" onclick="speakArabic('السجود')"><div class="pt-figure">${PRAYER_FIGURES.sujud}</div><div class="pt-name">Sujud</div><div class="pt-ar">السجود — Prosternation</div></div>
+                <div class="position-tile" onclick="speakArabic('الجلسة')"><div class="pt-figure">${PRAYER_FIGURES.julus}</div><div class="pt-name">Julus</div><div class="pt-ar">الجلسة — Assis</div></div>
+                <div class="position-tile" onclick="speakArabic('التشهد')"><div class="pt-figure">${PRAYER_FIGURES.tashahhud}</div><div class="pt-name">Tashahhud</div><div class="pt-ar">التشهد — Doigt levé</div></div>
+                <div class="position-tile" onclick="speakArabic('التسليم')"><div class="pt-figure">${PRAYER_FIGURES.taslim}</div><div class="pt-name">Taslim</div><div class="pt-ar">التسليم — Salutation</div></div>
             </div>
         </div>
-
         <div class="card">
             <div class="card-title">🎯 Mode pratique interactif</div>
-            <p style="color:var(--text-dim); font-size:0.82rem; margin-bottom:0.8rem;">
-                Suis chaque étape : ${state.prayerStepsSeen.length}/${PRAYER_STEPS.length} vues
-            </p>
+            <p style="color:var(--text-dim); font-size:0.82rem; margin-bottom:0.8rem;">Suis chaque étape : ${state.prayerStepsSeen.length}/${PRAYER_STEPS.length} vues</p>
             <div id="practice-container"></div>
         </div>
-
         <div class="card">
             <div class="card-title">📖 Guide complet — 11 étapes</div>
-            <div class="step-list">
-                ${PRAYER_STEPS.map((s, idx) => {
-                    const done = state.prayerStepsSeen.indexOf(idx) !== -1;
-                    return `<div class="step-card ${done ? 'done' : ''}">
-                        <div class="step-figure-sm">${PRAYER_FIGURES[s.key]}</div>
-                        <div class="step-body">
-                            <div class="step-num">Étape ${s.n} / ${PRAYER_STEPS.length}${done ? ' ✓' : ''}</div>
-                            <div class="step-title">${s.title}</div>
-                            <div class="step-ar">${s.ar}</div>
-                            <div class="step-desc">${s.desc}</div>
-                            ${s.recite.ar ? `<div class="step-recite">
-                                <div class="sr-ar">${s.recite.ar}</div>
-                                <div class="sr-tr">${s.recite.tr}</div>
-                                <div class="sr-fr">« ${s.recite.fr} »</div>
-                            </div>` : ''}
-                            <div class="step-actions">
-                                ${s.recite.ar ? `<button class="btn btn-ghost btn-xs" onclick="speakArabic('${escapeAttr(s.recite.ar)}')">🔊 Écouter (TTS)</button>` : ''}
-                                ${done ? '<span style="color:var(--success); font-size:0.75rem; align-self:center;">✓ Vue</span>'
-                                       : `<button class="btn btn-gold btn-xs" onclick="markPrayerStepSeen(${idx})">✓ Marquer vue</button>`}
-                            </div>
+            <div class="step-list">${PRAYER_STEPS.map((s, idx) => {
+                const done = state.prayerStepsSeen.indexOf(idx) !== -1;
+                return `<div class="step-card ${done ? 'done' : ''}">
+                    <div class="step-figure-sm">${PRAYER_FIGURES[s.key]}</div>
+                    <div class="step-body">
+                        <div class="step-num">Étape ${s.n} / ${PRAYER_STEPS.length}${done ? ' ✓' : ''}</div>
+                        <div class="step-title">${s.title}</div><div class="step-ar">${s.ar}</div><div class="step-desc">${s.desc}</div>
+                        ${s.recite.ar ? `<div class="step-recite"><div class="sr-ar">${s.recite.ar}</div><div class="sr-tr">${s.recite.tr}</div><div class="sr-fr">« ${s.recite.fr} »</div></div>` : ''}
+                        <div class="step-actions">
+                            ${s.recite.ar ? `<button class="btn btn-ghost btn-xs" onclick="speakArabic('${escapeAttr(s.recite.ar)}')">🔊 Écouter (TTS)</button>` : ''}
+                            ${done ? '<span style="color:var(--success); font-size:0.75rem; align-self:center;">✓ Vue</span>' : `<button class="btn btn-gold btn-xs" onclick="markPrayerStepSeen(${idx})">✓ Marquer vue</button>`}
                         </div>
-                    </div>`;
-                }).join('')}
-            </div>
+                    </div>
+                </div>`;
+            }).join('')}</div>
         </div>
     `;
     renderPractice();
-    setTimeout(initCompass, 100); // Lance la boussole
+    setTimeout(initCompass, 100);
 }
 
 function renderPractice() {
-    const c = document.getElementById('practice-container');
-    if (!c) return;
-    const s = PRAYER_STEPS[practiceStep];
-    const done = state.prayerStepsSeen.indexOf(practiceStep) !== -1;
+    const c = document.getElementById('practice-container'); if (!c) return;
+    const s = PRAYER_STEPS[practiceStep]; const done = state.prayerStepsSeen.indexOf(practiceStep) !== -1;
     c.innerHTML = `
         <div class="practice-box">
-            <div class="practice-figure">${PRAYER_FIGURES[s.key]}</div>
-            <div class="practice-title">${s.title}</div>
-            <div class="practice-ar">${s.ar}</div>
+            <div class="practice-figure">${PRAYER_FIGURES[s.key]}</div><div class="practice-title">${s.title}</div><div class="practice-ar">${s.ar}</div>
             <div class="practice-count">Étape ${practiceStep + 1} / ${PRAYER_STEPS.length}${done ? ' · ✓ vue' : ''}</div>
             <div class="practice-desc">${s.desc}</div>
-            ${s.recite.ar ? `<div class="practice-recite">
-                <div class="ar">${s.recite.ar}</div>
-                <div class="tr">${s.recite.tr}</div>
-                <div class="fr">« ${s.recite.fr} »</div>
-            </div>` : ''}
+            ${s.recite.ar ? `<div class="practice-recite"><div class="ar">${s.recite.ar}</div><div class="tr">${s.recite.tr}</div><div class="fr">« ${s.recite.fr} »</div></div>` : ''}
             ${s.audioIds && s.audioIds.length ? `<div style="display:grid; gap:0.4rem; max-width:480px; margin:0.9rem auto 0;">
                 ${s.audioIds.map(aid => {
-                    const r = AUDIO_RECITATIONS[aid];
-                    return `<button class="recit-card" data-audio-id="${aid}" onclick="playSurahAudio('${aid}')" style="padding:0.6rem 0.9rem;">
-                        <div class="recit-info" style="text-align:left;">
-                            <div class="recit-name" style="font-size:0.9rem;">${r.name}</div>
-                            <div class="recit-ar" style="font-size:0.9rem;">${r.ar}</div>
-                            <div class="recit-meta">Récitation complète</div>
-                        </div>
-                        <div class="recit-btn" style="width:36px; height:36px; font-size:1rem;"><span class="recit-icon">🎧</span></div>
-                    </button>`;
+                    const sNum = aid === 'fatiha' ? 1 : 112;
+                    const name = aid === 'fatiha' ? 'Al-Fatiha' : 'Al-Ikhlas';
+                    const ar = aid === 'fatiha' ? 'الفاتحة' : 'الإخلاص';
+                    return `<button class="recit-card" onclick="playSurahAudio(${sNum}, 1)" style="padding:0.6rem 0.9rem;"><div class="recit-info" style="text-align:left;"><div class="recit-name" style="font-size:0.9rem;">${name}</div><div class="recit-ar" style="font-size:0.9rem;">${ar}</div><div class="recit-meta">Récitation complète</div></div><div class="recit-btn" style="width:36px; height:36px; font-size:1rem;"><span class="recit-icon">🎧</span></div></button>`;
                 }).join('')}
-                ${s.audioIds.length > 1 ? `<button class="btn btn-gold btn-sm" onclick="playSequence(['fatiha','ikhlas'])">🎧 Fatiha + Ikhlas (séquence)</button>` : ''}
             </div>` : ''}
             <div class="practice-nav">
                 <button class="btn btn-ghost btn-sm" onclick="practiceMove(-1)" ${practiceStep === 0 ? 'disabled' : ''}>← Précédent</button>
                 ${s.recite.ar ? `<button class="btn btn-sm" onclick="speakArabic('${escapeAttr(s.recite.ar)}')">🔊 TTS</button>` : ''}
-                ${done ? '<span style="color:var(--success); padding:0.5rem 0.9rem; font-size:0.8rem;">✓ Vue</span>'
-                       : `<button class="btn btn-gold btn-sm" onclick="markPrayerStepSeen(${practiceStep})">✓ Marquer vue</button>`}
+                ${done ? '<span style="color:var(--success); padding:0.5rem 0.9rem; font-size:0.8rem;">✓ Vue</span>' : `<button class="btn btn-gold btn-sm" onclick="markPrayerStepSeen(${practiceStep})">✓ Marquer vue</button>`}
                 <button class="btn btn-ghost btn-sm" onclick="practiceMove(1)" ${practiceStep === PRAYER_STEPS.length - 1 ? 'disabled' : ''}>Suivant →</button>
             </div>
         </div>
     `;
 }
-function practiceMove(dir) {
-    stopCurrentAudio();
-    practiceStep = Math.max(0, Math.min(PRAYER_STEPS.length - 1, practiceStep + dir));
-    renderPractice();
-}
-function markPrayerStepSeen(idx) {
-    if (state.prayerStepsSeen.indexOf(idx) === -1) {
-        state.prayerStepsSeen.push(idx);
-        saveState();
-        addXP(6, 'Étape vue');
-        checkBadges();
-        renderPrayer();
-    } else showToast('Déjà vue ✓');
-}
+function practiceMove(dir) { stopCurrentAudio(); practiceStep = Math.max(0, Math.min(PRAYER_STEPS.length - 1, practiceStep + dir)); renderPractice(); }
+function markPrayerStepSeen(idx) { if (state.prayerStepsSeen.indexOf(idx) === -1) { state.prayerStepsSeen.push(idx); saveState(); addXP(6, 'Étape vue'); checkBadges(); renderPrayer(); } else showToast('Déjà vue ✓'); }
 
-/* ============ AUTRES PAGES ============ */
 function renderNumbers() {
     document.getElementById('view-numbers').innerHTML = `
-        <h2 class="section-title">🔢 Nombres arabes</h2>
-        <p class="section-subtitle">Clique pour écouter la prononciation.</p>
-        <div class="numbers-grid">
-            ${NUMBERS.map(n => `<div class="number-tile" onclick="speakArabic('${escapeAttr(n.ar)}')">
-                <div class="num-ar">${n.ar}</div>
-                <div class="num-name">${n.name}</div>
-                <div class="num-fr">${n.fr}</div>
-            </div>`).join('')}
-        </div>
-        <div class="card mt-1">
-            <div class="card-title">💡 Le savais-tu ?</div>
-            <p style="color:var(--text-dim); font-size:0.9rem; line-height:1.7;">
-                Les chiffres arabes (٠ ١ ٢...) sont utilisés dans le monde arabe. Les chiffres occidentaux
-                ont été popularisés par les mathématiciens arabes.
-            </p>
-        </div>
+        <h2 class="section-title">🔢 Nombres arabes</h2><p class="section-subtitle">Clique pour écouter la prononciation.</p>
+        <div class="numbers-grid">${NUMBERS.map(n => `<div class="number-tile" onclick="speakArabic('${escapeAttr(n.ar)}')"><div class="num-ar">${n.ar}</div><div class="num-name">${n.name}</div><div class="num-fr">${n.fr}</div></div>`).join('')}</div>
+        <div class="card mt-1"><div class="card-title">💡 Le savais-tu ?</div><p style="color:var(--text-dim); font-size:0.9rem; line-height:1.7;">Les chiffres arabes (٠ ١ ٢...) sont utilisés dans le monde arabe. Les chiffres occidentaux ont été popularisés par les mathématiciens arabes.</p></div>
     `;
 }
 function renderDuas() {
     document.getElementById('view-duas').innerHTML = `
-        <h2 class="section-title">🤲 Invocations</h2>
-        <p class="section-subtitle">Les duas essentielles du quotidien.</p>
-        <div class="duas-grid">
-            ${DUAS.map(d => `<div class="dua-card">
-                <div class="dua-ar">${d.ar}</div>
-                <div class="dua-tr">${d.tr}</div>
-                <div class="dua-fr">« ${d.fr} »</div>
-                <div class="dua-use">📌 ${d.use}</div>
-                <div style="text-align:right; margin-top:0.5rem;">
-                    <button class="audio-btn" onclick="speakArabic('${escapeAttr(d.ar)}')">🔊 Écouter</button>
-                </div>
-            </div>`).join('')}
-        </div>
+        <h2 class="section-title">🤲 Invocations</h2><p class="section-subtitle">Les duas essentielles du quotidien.</p>
+        <div class="duas-grid">${DUAS.map(d => `<div class="dua-card"><div class="dua-ar">${d.ar}</div><div class="dua-tr">${d.tr}</div><div class="dua-fr">« ${d.fr} »</div><div class="dua-use">📌 ${d.use}</div><div style="text-align:right; margin-top:0.5rem;"><button class="audio-btn" onclick="speakArabic('${escapeAttr(d.ar)}')">🔊 Écouter</button></div></div>`).join('')}</div>
     `;
 }
 function renderStats() {
@@ -1939,480 +1430,124 @@ function renderStats() {
     const days = ['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
     const last7 = [];
     for (let i = 6; i >= 0; i--) {
-        const d = new Date(Date.now() - i * 86400000);
-        const key = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
-        const count = (state.stats.history || []).filter(h => {
-            const hd = new Date(h.date);
-            const hk = hd.getFullYear() + '-' + (hd.getMonth()+1) + '-' + hd.getDate();
-            return hk === key;
-        }).length;
+        const d = new Date(Date.now() - i * 86400000); const key = d.getFullYear() + '-' + (d.getMonth()+1) + '-' + d.getDate();
+        const count = (state.stats.history || []).filter(h => { const hd = new Date(h.date); const hk = hd.getFullYear() + '-' + (hd.getMonth()+1) + '-' + hd.getDate(); return hk === key; }).length;
         last7.push({ label: days[d.getDay()], count });
     }
     const maxCount = Math.max(1, ...last7.map(d => d.count));
-
     el.innerHTML = `
-        <h2 class="section-title">📊 Statistiques</h2>
-        <p class="section-subtitle">Ton parcours en un coup d'œil.</p>
+        <h2 class="section-title">📊 Statistiques</h2><p class="section-subtitle">Ton parcours en un coup d'œil.</p>
         <div class="stats-grid">
-            <div class="dash-card"><div class="icon">⭐</div><div class="label">XP</div>
-                <div class="value">${state.xp}</div><div class="sub">Niveau ${lvl}</div></div>
-            <div class="dash-card"><div class="icon">🔥</div><div class="label">Série</div>
-                <div class="value">${state.streak}</div><div class="sub">jours</div></div>
-            <div class="dash-card"><div class="icon">🎯</div><div class="label">Précision</div>
-                <div class="value">${acc}%</div><div class="sub">${state.stats.correct} / ${total}</div></div>
-            <div class="dash-card"><div class="icon">🏅</div><div class="label">Badges</div>
-                <div class="value">${state.earnedBadges.length}/${BADGES.length}</div><div class="sub">débloqués</div></div>
+            <div class="dash-card"><div class="icon">⭐</div><div class="label">XP</div><div class="value">${state.xp}</div><div class="sub">Niveau ${lvl}</div></div>
+            <div class="dash-card"><div class="icon">🔥</div><div class="label">Série</div><div class="value">${state.streak}</div><div class="sub">jours</div></div>
+            <div class="dash-card"><div class="icon">🎯</div><div class="label">Précision</div><div class="value">${acc}%</div><div class="sub">${state.stats.correct} / ${total}</div></div>
+            <div class="dash-card"><div class="icon">🏅</div><div class="label">Badges</div><div class="value">${state.earnedBadges.length}/${BADGES.length}</div><div class="sub">débloqués</div></div>
         </div>
-
-        <div class="card">
-            <div class="card-title">📅 Activité 7 derniers jours</div>
-            <div class="bar-chart">
-                ${last7.map(d => {
-                    const h = Math.round((d.count / maxCount) * 100);
-                    return `<div class="bar-col">
-                        <div class="bar-fill" style="height:${h}%"></div>
-                        <div class="bar-label">${d.label}</div>
-                    </div>`;
-                }).join('')}
-            </div>
-            <p style="text-align:center; color:var(--text-dim); font-size:0.75rem;">Quiz par jour</p>
-        </div>
-
-        <div class="card">
-            <div class="card-title">🎓 Progression</div>
-            <div style="display:grid; gap:0.8rem; margin-top:0.5rem;">
-                <div><div class="progress-label"><span>🔤 Alphabet</span><span>${state.learnedLetters.length}/${LETTERS.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedLetters.length/LETTERS.length)*100}%"></div></div></div>
-                <div><div class="progress-label"><span>💡 Vocabulaire</span><span>${state.learnedWords.length}/${VOCAB.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedWords.length/VOCAB.length)*100}%"></div></div></div>
-                <div><div class="progress-label"><span>📜 Sourates</span><span>${state.studiedSurahs.length}/${SURAHS.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.studiedSurahs.length/SURAHS.length)*100}%"></div></div></div>
-                <div><div class="progress-label"><span>🕌 Prière</span><span>${state.prayerStepsSeen.length}/${PRAYER_STEPS.length}</span></div>
-                    <div class="progress-bar"><div class="progress-fill" style="width:${(state.prayerStepsSeen.length/PRAYER_STEPS.length)*100}%"></div></div></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">📝 Historique récent</div>
-            ${history.length === 0 ? '<p style="color:var(--text-dim); font-size:0.85rem;">Aucun quiz encore.</p>'
-                : '<div class="history-list">' + history.map(h => {
-                    const d = new Date(h.date);
-                    const ds = d.toLocaleDateString('fr-FR', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' });
-                    return `<div class="history-item">
-                        <span>${h.type === 'daily' ? '🌅 Défi' : '🎯 ' + (h.type || 'Quiz')}</span>
-                        <span class="h-score">${h.score}/${h.total}</span>
-                        <span class="h-date">${ds}</span>
-                    </div>`;
-                }).join('') + '</div>'}
-        </div>
+        <div class="card"><div class="card-title">📅 Activité 7 derniers jours</div><div class="bar-chart">${last7.map(d => { const h = Math.round((d.count / maxCount) * 100); return `<div class="bar-col"><div class="bar-fill" style="height:${h}%"></div><div class="bar-label">${d.label}</div></div>`; }).join('')}</div><p style="text-align:center; color:var(--text-dim); font-size:0.75rem;">Quiz par jour</p></div>
+        <div class="card"><div class="card-title">🎓 Progression</div><div style="display:grid; gap:0.8rem; margin-top:0.5rem;"><div><div class="progress-label"><span>🔤 Alphabet</span><span>${state.learnedLetters.length}/${LETTERS.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedLetters.length/LETTERS.length)*100}%"></div></div></div><div><div class="progress-label"><span>💡 Vocabulaire</span><span>${state.learnedWords.length}/${VOCAB.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.learnedWords.length/VOCAB.length)*100}%"></div></div></div><div><div class="progress-label"><span>📜 Sourates</span><span>${state.studiedSurahs.length}/${SURAHS.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.studiedSurahs.length/SURAHS.length)*100}%"></div></div></div><div><div class="progress-label"><span>🕌 Prière</span><span>${state.prayerStepsSeen.length}/${PRAYER_STEPS.length}</span></div><div class="progress-bar"><div class="progress-fill" style="width:${(state.prayerStepsSeen.length/PRAYER_STEPS.length)*100}%"></div></div></div></div></div>
+        <div class="card"><div class="card-title">📝 Historique récent</div>${history.length === 0 ? '<p style="color:var(--text-dim); font-size:0.85rem;">Aucun quiz encore.</p>' : '<div class="history-list">' + history.map(h => { const d = new Date(h.date); const ds = d.toLocaleDateString('fr-FR', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }); return `<div class="history-item"><span>${h.type === 'daily' ? '🌅 Défi' : '🎯 ' + (h.type || 'Quiz')}</span><span class="h-score">${h.score}/${h.total}</span><span class="h-date">${ds}</span></div>`; }).join('') + '</div>'}</div>
     `;
 }
 function renderSettings() {
     const el = document.getElementById('view-settings');
     el.innerHTML = `
-        <h2 class="section-title">⚙️ Paramètres</h2>
-        <p class="section-subtitle">Personnalise ton expérience.</p>
-
-        <div class="card">
-            <div class="card-title">🎨 Apparence</div>
-            <div class="setting-row">
-                <div><div class="s-label">Thème clair</div>
-                    <div class="s-desc">Basculer entre sombre et clair</div></div>
-                <button class="toggle ${state.settings.theme === 'light' ? 'on' : ''}" id="theme-toggle"></button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">🔊 Audio</div>
-            <div class="setting-row">
-                <div><div class="s-label">Effets sonores</div>
-                    <div class="s-desc">Sons de réussite, erreur, niveau</div></div>
-                <button class="toggle ${state.settings.soundEnabled ? 'on' : ''}" id="sound-toggle"></button>
-            </div>
-            <div class="setting-row">
-                <div><div class="s-label">Vitesse TTS arabe</div>
-                    <div class="s-desc">${state.settings.audioRate}x (prononciation)</div></div>
-                <input type="range" id="audio-rate" min="0.4" max="1.2" step="0.1" value="${state.settings.audioRate}">
-            </div>
-            <div class="setting-row">
-                <div><div class="s-label">Récitateur</div>
-                    <div class="s-desc">Utilisé pour les récitations complètes</div></div>
-                <div style="font-size:0.85rem; color:var(--gold);">Mishary Alafasy</div>
-            </div>
-            <div class="setting-row">
-                <div><div class="s-label">Tester l'audio</div>
-                    <div class="s-desc">Écouter « Bismillah »</div></div>
-                <button class="btn btn-ghost btn-sm" onclick="speakArabic('بِسْمِ اللَّهِ')">🔊 Tester</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">💾 Données</div>
-            <div class="setting-row">
-                <div><div class="s-label">Exporter</div><div class="s-desc">Sauvegarder en JSON</div></div>
-                <button class="btn btn-ghost btn-sm" onclick="exportData()">📤 Exporter</button>
-            </div>
-            <div class="setting-row">
-                <div><div class="s-label">Importer</div><div class="s-desc">Restaurer une sauvegarde</div></div>
-                <label class="btn btn-ghost btn-sm" style="cursor:pointer;">
-                    📥 Importer
-                    <input type="file" accept=".json" style="display:none;" onchange="importData(event)">
-                </label>
-            </div>
-            <div class="setting-row">
-                <div><div class="s-label" style="color:var(--error);">Réinitialiser</div>
-                    <div class="s-desc">Effacer toute la progression</div></div>
-                <button class="btn btn-danger btn-sm" onclick="resetProgress()">🗑️ Reset</button>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-title">ℹ️ À propos</div>
-            <p style="color:var(--text-dim); font-size:0.85rem; line-height:1.7;">
-                <strong>Qurania v3.2</strong> — Apprends le Coran et la prière en t'amusant.<br>
-                ${LETTERS.length} lettres • ${VOCAB.length} mots • ${SURAHS.length} sourates • ${DUAS.length} duas • ${PRAYER_STEPS.length} étapes de prière<br>
-                Audio : récitations Mishary Alafasy via CDN AlQuran.cloud (nécessite une connexion).<br>
-                Données sauvegardées localement. Aucune connexion requise pour le reste.
-            </p>
-        </div>
+        <h2 class="section-title">⚙️ Paramètres</h2><p class="section-subtitle">Personnalise ton expérience.</p>
+        <div class="card"><div class="card-title">🎨 Apparence</div><div class="setting-row"><div><div class="s-label">Thème clair</div><div class="s-desc">Basculer entre sombre et clair</div></div><button class="toggle ${state.settings.theme === 'light' ? 'on' : ''}" id="theme-toggle"></button></div></div>
+        <div class="card"><div class="card-title">🔊 Audio</div><div class="setting-row"><div><div class="s-label">Effets sonores</div><div class="s-desc">Sons de réussite, erreur, niveau</div></div><button class="toggle ${state.settings.soundEnabled ? 'on' : ''}" id="sound-toggle"></button></div><div class="setting-row"><div><div class="s-label">Vitesse TTS arabe</div><div class="s-desc">${state.settings.audioRate}x (prononciation)</div></div><input type="range" id="audio-rate" min="0.4" max="1.2" step="0.1" value="${state.settings.audioRate}"></div><div class="setting-row"><div><div class="s-label">Tester l'audio</div><div class="s-desc">Écouter « Bismillah »</div></div><button class="btn btn-ghost btn-sm" onclick="speakArabic('بِسْمِ اللَّهِ')">🔊 Tester</button></div></div>
+        <div class="card"><div class="card-title">💾 Données</div><div class="setting-row"><div><div class="s-label">Exporter</div><div class="s-desc">Sauvegarder en JSON</div></div><button class="btn btn-ghost btn-sm" onclick="exportData()">📤 Exporter</button></div><div class="setting-row"><div><div class="s-label">Importer</div><div class="s-desc">Restaurer une sauvegarde</div></div><label class="btn btn-ghost btn-sm" style="cursor:pointer;">📥 Importer<input type="file" accept=".json" style="display:none;" onchange="importData(event)"></label></div><div class="setting-row"><div><div class="s-label" style="color:var(--error);">Réinitialiser</div><div class="s-desc">Effacer toute la progression</div></div><button class="btn btn-danger btn-sm" onclick="resetProgress()">🗑️ Reset</button></div></div>
+        <div class="card"><div class="card-title">ℹ️ À propos</div><p style="color:var(--text-dim); font-size:0.85rem; line-height:1.7;"><strong>Qurania v3.3</strong> — Apprends le Coran et la prière en t'amusant.<br>${LETTERS.length} lettres • ${VOCAB.length} mots • ${SURAHS.length} sourates • ${DUAS.length} duas • ${PRAYER_STEPS.length} étapes de prière<br>Audio : récitations Mishary Alafasy via CDN AlQuran.cloud.<br>Données sauvegardées localement.</p></div>
     `;
-
-    document.getElementById('theme-toggle').addEventListener('click', function() {
-        state.settings.theme = state.settings.theme === 'light' ? 'dark' : 'light';
-        applyTheme();
-        saveState();
-        this.classList.toggle('on', state.settings.theme === 'light');
-    });
-    document.getElementById('sound-toggle').addEventListener('click', function() {
-        state.settings.soundEnabled = !state.settings.soundEnabled;
-        saveState();
-        this.classList.toggle('on', state.settings.soundEnabled);
-        if (state.settings.soundEnabled) playSoundXP();
-        showToast(state.settings.soundEnabled ? '🔊 Sons activés' : '🔇 Sons désactivés');
-    });
-    document.getElementById('audio-rate').addEventListener('input', function() {
-        state.settings.audioRate = parseFloat(this.value);
-        saveState();
-        this.previousElementSibling.querySelector('.s-desc').textContent = this.value + 'x (prononciation)';
-    });
+    document.getElementById('theme-toggle').addEventListener('click', function() { state.settings.theme = state.settings.theme === 'light' ? 'dark' : 'light'; applyTheme(); saveState(); this.classList.toggle('on', state.settings.theme === 'light'); });
+    document.getElementById('sound-toggle').addEventListener('click', function() { state.settings.soundEnabled = !state.settings.soundEnabled; saveState(); this.classList.toggle('on', state.settings.soundEnabled); if (state.settings.soundEnabled) playSoundXP(); showToast(state.settings.soundEnabled ? '🔊 Sons activés' : '🔇 Sons désactivés'); });
+    document.getElementById('audio-rate').addEventListener('input', function() { state.settings.audioRate = parseFloat(this.value); saveState(); this.previousElementSibling.querySelector('.s-desc').textContent = this.value + 'x (prononciation)'; });
 }
 function applyTheme() { document.body.classList.toggle('light', state.settings.theme === 'light'); }
-function exportData() {
-    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'qurania-sauvegarde-' + todayKey() + '.json'; a.click();
-    URL.revokeObjectURL(url);
-    showToast('📤 Sauvegarde exportée');
-}
-function importData(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (e) => {
-        try {
-            const imported = JSON.parse(e.target.result);
-            state = { ...defaultState, ...imported,
-                stats: { ...defaultState.stats, ...(imported.stats || {}) },
-                settings: { ...defaultState.settings, ...(imported.settings || {}) },
-                vocabSRS: imported.vocabSRS || {},
-                prayerStepsSeen: imported.prayerStepsSeen || [] };
-            saveState();
-            applyTheme();
-            updateHeader();
-            renderSettings();
-            showToast('✅ Sauvegarde restaurée !');
-        } catch (err) { showToast('❌ Fichier invalide'); }
-    };
-    reader.readAsText(file);
-}
-function resetProgress() {
-    if (!confirm('⚠️ Effacer toute ta progression ?')) return;
-    localStorage.removeItem(STORAGE_KEY);
-    state = JSON.parse(JSON.stringify(defaultState));
-    saveState();
-    applyTheme();
-    updateHeader();
-    renderSettings();
-    showToast('🗑️ Progression réinitialisée');
-}
+function exportData() { const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = 'qurania-sauvegarde-' + todayKey() + '.json'; a.click(); URL.revokeObjectURL(url); showToast('📤 Sauvegarde exportée'); }
+function importData(event) { const file = event.target.files[0]; if (!file) return; const reader = new FileReader(); reader.onload = (e) => { try { const imported = JSON.parse(e.target.result); state = { ...defaultState, ...imported, stats: { ...defaultState.stats, ...(imported.stats || {}) }, settings: { ...defaultState.settings, ...(imported.settings || {}) }, vocabSRS: imported.vocabSRS || {}, prayerStepsSeen: imported.prayerStepsSeen || [] }; saveState(); applyTheme(); updateHeader(); renderSettings(); showToast('✅ Sauvegarde restaurée !'); } catch (err) { showToast('❌ Fichier invalide'); } }; reader.readAsText(file); }
+function resetProgress() { if (!confirm('⚠️ Effacer toute ta progression ?')) return; localStorage.removeItem(STORAGE_KEY); state = JSON.parse(JSON.stringify(defaultState)); saveState(); applyTheme(); updateHeader(); renderSettings(); showToast('🗑️ Progression réinitialisée'); }
 
 function renderExercises() {
-    const el = document.getElementById('view-exercises');
-    const dailyDone = state.lastDailyChallenge === todayKey();
+    const el = document.getElementById('view-exercises'); const dailyDone = state.lastDailyChallenge === todayKey();
     el.innerHTML = `
-        <h2 class="section-title">🎯 Exercices</h2>
-        <p class="section-subtitle">Teste tes connaissances et gagne des XP !</p>
+        <h2 class="section-title">🎯 Exercices</h2><p class="section-subtitle">Teste tes connaissances et gagne des XP !</p>
         <div class="exercise-grid">
-            <div class="exercise-card ${dailyDone ? 'done' : 'daily'}" onclick="${dailyDone ? '' : 'startDailyChallenge()'}">
-                <div class="ex-icon">🌅</div><div class="ex-title">Défi du jour</div>
-                <div class="ex-desc">${dailyDone ? '✅ Terminé aujourd\'hui' : '+50 XP bonus — 5 questions'}</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('letters')">
-                <div class="ex-icon">🔤</div><div class="ex-title">Quiz Alphabet</div>
-                <div class="ex-desc">Reconnais les lettres arabes</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('vocab')">
-                <div class="ex-icon">💡</div><div class="ex-title">Quiz Vocabulaire</div>
-                <div class="ex-desc">Traduis les mots coraniques</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('verses')">
-                <div class="ex-icon">📜</div><div class="ex-title">Quiz Sourates</div>
-                <div class="ex-desc">Complète les versets</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('prayer')">
-                <div class="ex-icon">🕌</div><div class="ex-title">Quiz Prière</div>
-                <div class="ex-desc">Étapes et positions</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('numbers')">
-                <div class="ex-icon">🔢</div><div class="ex-title">Quiz Nombres</div>
-                <div class="ex-desc">Chiffres arabes</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('duas')">
-                <div class="ex-icon">🤲</div><div class="ex-title">Quiz Duas</div>
-                <div class="ex-desc">Invocations</div>
-            </div>
-            <div class="exercise-card" onclick="startQuiz('mix')">
-                <div class="ex-icon">🏆</div><div class="ex-title">Défi Mixte</div>
-                <div class="ex-desc">Un peu de tout !</div>
-            </div>
-        </div>
-        <div id="quiz-area" style="margin-top:1.5rem;"></div>
+            <div class="exercise-card ${dailyDone ? 'done' : 'daily'}" onclick="${dailyDone ? '' : 'startDailyChallenge()'}"><div class="ex-icon">🌅</div><div class="ex-title">Défi du jour</div><div class="ex-desc">${dailyDone ? '✅ Terminé aujourd\'hui' : '+50 XP bonus — 5 questions'}</div></div>
+            <div class="exercise-card" onclick="startQuiz('letters')"><div class="ex-icon">🔤</div><div class="ex-title">Quiz Alphabet</div><div class="ex-desc">Reconnais les lettres arabes</div></div>
+            <div class="exercise-card" onclick="startQuiz('vocab')"><div class="ex-icon">💡</div><div class="ex-title">Quiz Vocabulaire</div><div class="ex-desc">Traduis les mots coraniques</div></div>
+            <div class="exercise-card" onclick="startQuiz('verses')"><div class="ex-icon">📜</div><div class="ex-title">Quiz Sourates</div><div class="ex-desc">Complète les versets</div></div>
+            <div class="exercise-card" onclick="startQuiz('prayer')"><div class="ex-icon">🕌</div><div class="ex-title">Quiz Prière</div><div class="ex-desc">Étapes et positions</div></div>
+            <div class="exercise-card" onclick="startQuiz('numbers')"><div class="ex-icon">🔢</div><div class="ex-title">Quiz Nombres</div><div class="ex-desc">Chiffres arabes</div></div>
+            <div class="exercise-card" onclick="startQuiz('duas')"><div class="ex-icon">🤲</div><div class="ex-title">Quiz Duas</div><div class="ex-desc">Invocations</div></div>
+            <div class="exercise-card" onclick="startQuiz('mix')"><div class="ex-icon">🏆</div><div class="ex-title">Défi Mixte</div><div class="ex-desc">Un peu de tout !</div></div>
+        </div><div id="quiz-area" style="margin-top:1.5rem;"></div>
     `;
 }
-
 let currentQuiz = null, combo = 0;
 function buildQuestions(type, n) {
-    n = n || 10;
-    const qs = [];
-    const incLetters = (type === 'letters' || type === 'mix');
-    const incVocab = (type === 'vocab' || type === 'mix');
-    const incVerses = (type === 'verses' || type === 'mix');
-    const incNumbers = (type === 'numbers' || type === 'mix');
-    const incDuas = (type === 'duas' || type === 'mix');
-    const incPrayer = (type === 'prayer');
-
-    if (incLetters) {
-        const cnt = type === 'mix' ? 3 : n;
-        shuffle(LETTERS.map((_, i) => i)).slice(0, cnt).forEach(i => {
-            const correct = LETTERS[i].name;
-            const wrong = shuffle(LETTERS.filter((_, j) => j !== i).map(l => l.name)).slice(0, 3);
-            qs.push({ kind:'letter', question:LETTERS[i].ar, hint:"Quel est le nom de cette lettre ?", options: shuffle([correct, ...wrong]), answer: correct });
-        });
-    }
-    if (incVocab) {
-        const cnt = type === 'mix' ? 3 : n;
-        shuffle(VOCAB.map((_, i) => i)).slice(0, cnt).forEach(i => {
-            const correct = VOCAB[i].fr;
-            const wrong = shuffle(VOCAB.filter((_, j) => j !== i).map(v => v.fr)).slice(0, 3);
-            qs.push({ kind:'vocab', question:VOCAB[i].ar, hint:"Que signifie ce mot ?", options: shuffle([correct, ...wrong]), answer: correct, translit: VOCAB[i].tr });
-        });
-    }
-    if (incVerses) {
-        const cnt = type === 'mix' ? 2 : n;
-        const all = [];
-        SURAHS.forEach(s => s.verses.forEach((v, vi) => all.push({ s, v, vi })));
-        shuffle(all).slice(0, cnt).forEach(({ s, v, vi }) => {
-            const w = v.ar.split(/\s+/);
-            if (w.length < 3) return;
-            const hi = Math.floor(Math.random() * w.length);
-            const hidden = w[hi];
-            const disp = w.slice(); disp[hi] = '____';
-            const otherW = all.filter(x => x.v.ar !== v.ar).reduce((a, x) => a.concat(x.v.ar.split(/\s+/)), []).filter(x => x !== hidden && x.length > 1);
-            const uniq = [...new Set(otherW)];
-            const wrong = shuffle(uniq).slice(0, 3);
-            if (wrong.length < 3) return;
-            qs.push({ kind:'verse', question:disp.join(' '), hint:s.name + ', v.' + (vi+1) + ' — Quel mot ?', options: shuffle([hidden, ...wrong]), answer: hidden });
-        });
-    }
-    if (incNumbers) {
-        const cnt = type === 'mix' ? 2 : n;
-        shuffle(NUMBERS.map((_, i) => i)).slice(0, cnt).forEach(i => {
-            const correct = NUMBERS[i].fr;
-            const wrong = shuffle(NUMBERS.filter((_, j) => j !== i).map(x => x.fr)).slice(0, 3);
-            qs.push({ kind:'number', question:NUMBERS[i].ar, hint:"Quel nombre ?", options: shuffle([correct, ...wrong]), answer: correct });
-        });
-    }
-    if (incDuas) {
-        const cnt = type === 'mix' ? 2 : n;
-        shuffle(DUAS.map((_, i) => i)).slice(0, cnt).forEach(i => {
-            const correct = DUAS[i].fr;
-            const wrong = shuffle(DUAS.filter((_, j) => j !== i).map(d => d.fr)).slice(0, 3);
-            qs.push({ kind:'dua', question:DUAS[i].ar, hint:"Que signifie cette invocation ?", options: shuffle([correct, ...wrong]), answer: correct, translit: DUAS[i].tr });
-        });
-    }
-    if (incPrayer) {
-        const withR = PRAYER_STEPS.filter(s => s.recite.ar);
-        shuffle(withR.map((_, i) => i)).slice(0, n).forEach(i => {
-            const step = withR[i];
-            const correct = step.recite.fr;
-            const wrong = shuffle(withR.filter((_, j) => j !== i).map(s => s.recite.fr)).slice(0, 3);
-            if (wrong.length < 3) return;
-            qs.push({ kind:'prayer', question:step.recite.ar, hint:"Que dit-on pendant : " + step.title + " ?", options: shuffle([correct, ...wrong]), answer: correct, translit: step.recite.tr });
-        });
-        const pos = [
-            { q:"Position pour « Subhana rabbiyal adhim » ?", a:"Ruku (inclinaison)", w:["Sujud", "Qiyam", "Julus"] },
-            { q:"Position pour « Subhana rabbiyal a'la » ?", a:"Sujud (prosternation)", w:["Ruku", "Qiyam", "Tashahhud"] },
-            { q:"Rak'a de Fajr ?", a:"2", w:["3", "4", "5"] },
-            { q:"Rak'a de Maghrib ?", a:"3", w:["2", "4", "5"] },
-            { q:"Rak'a de Dhuhr ?", a:"4", w:["2", "3", "5"] },
-            { q:"Première étape de la prière ?", a:"Takbir", w:["Ruku", "Fatiha", "Sujud"] },
-            { q:"Que dit-on en se prosternant ?", a:"Subhana rabbiyal a'la", w:["Subhana rabbiyal adhim", "Allahu Akbar", "Rabbighfir li"] },
-            { q:"Salutation finale ?", a:"As-salamu alaykum wa rahmatullah", w:["Allahu Akbar", "Al-hamdu lillah", "SubhanAllah"] }
-        ];
-        shuffle(pos).slice(0, 4).forEach(p => {
-            qs.push({ kind:'prayer-qa', question:p.q, hint:"Connaissance de la prière", options: shuffle([p.a, ...p.w]), answer: p.a });
-        });
-    }
+    n = n || 10; const qs = [];
+    if (type === 'letters' || type === 'mix') { const cnt = type === 'mix' ? 3 : n; shuffle(LETTERS.map((_, i) => i)).slice(0, cnt).forEach(i => { const correct = LETTERS[i].name; const wrong = shuffle(LETTERS.filter((_, j) => j !== i).map(l => l.name)).slice(0, 3); qs.push({ kind:'letter', question:LETTERS[i].ar, hint:"Quel est le nom de cette lettre ?", options: shuffle([correct, ...wrong]), answer: correct }); }); }
+    if (type === 'vocab' || type === 'mix') { const cnt = type === 'mix' ? 3 : n; shuffle(VOCAB.map((_, i) => i)).slice(0, cnt).forEach(i => { const correct = VOCAB[i].fr; const wrong = shuffle(VOCAB.filter((_, j) => j !== i).map(v => v.fr)).slice(0, 3); qs.push({ kind:'vocab', question:VOCAB[i].ar, hint:"Que signifie ce mot ?", options: shuffle([correct, ...wrong]), answer: correct, translit: VOCAB[i].tr }); }); }
+    if (type === 'verses' || type === 'mix') { const cnt = type === 'mix' ? 2 : n; const all = []; SURAHS.forEach(s => s.verses.forEach((v, vi) => all.push({ s, v, vi }))); shuffle(all).slice(0, cnt).forEach(({ s, v, vi }) => { const w = v.ar.split(/\s+/); if (w.length < 3) return; const hi = Math.floor(Math.random() * w.length); const hidden = w[hi]; const disp = w.slice(); disp[hi] = '____'; const otherW = all.filter(x => x.v.ar !== v.ar).reduce((a, x) => a.concat(x.v.ar.split(/\s+/)), []).filter(x => x !== hidden && x.length > 1); const uniq = [...new Set(otherW)]; const wrong = shuffle(uniq).slice(0, 3); if (wrong.length < 3) return; qs.push({ kind:'verse', question:disp.join(' '), hint:s.name + ', v.' + (vi+1) + ' — Quel mot ?', options: shuffle([hidden, ...wrong]), answer: hidden }); }); }
+    if (type === 'numbers' || type === 'mix') { const cnt = type === 'mix' ? 2 : n; shuffle(NUMBERS.map((_, i) => i)).slice(0, cnt).forEach(i => { const correct = NUMBERS[i].fr; const wrong = shuffle(NUMBERS.filter((_, j) => j !== i).map(x => x.fr)).slice(0, 3); qs.push({ kind:'number', question:NUMBERS[i].ar, hint:"Quel nombre ?", options: shuffle([correct, ...wrong]), answer: correct }); }); }
+    if (type === 'duas' || type === 'mix') { const cnt = type === 'mix' ? 2 : n; shuffle(DUAS.map((_, i) => i)).slice(0, cnt).forEach(i => { const correct = DUAS[i].fr; const wrong = shuffle(DUAS.filter((_, j) => j !== i).map(d => d.fr)).slice(0, 3); qs.push({ kind:'dua', question:DUAS[i].ar, hint:"Que signifie cette invocation ?", options: shuffle([correct, ...wrong]), answer: correct, translit: DUAS[i].tr }); }); }
+    if (type === 'prayer') { const withR = PRAYER_STEPS.filter(s => s.recite.ar); shuffle(withR.map((_, i) => i)).slice(0, n).forEach(i => { const step = withR[i]; const correct = step.recite.fr; const wrong = shuffle(withR.filter((_, j) => j !== i).map(s => s.recite.fr)).slice(0, 3); if (wrong.length < 3) return; qs.push({ kind:'prayer', question:step.recite.ar, hint:"Que dit-on pendant : " + step.title + " ?", options: shuffle([correct, ...wrong]), answer: correct, translit: step.recite.tr }); }); const pos = [{ q:"Position pour « Subhana rabbiyal adhim » ?", a:"Ruku (inclinaison)", w:["Sujud", "Qiyam", "Julus"] }, { q:"Position pour « Subhana rabbiyal a'la » ?", a:"Sujud (prosternation)", w:["Ruku", "Qiyam", "Tashahhud"] }, { q:"Rak'a de Fajr ?", a:"2", w:["3", "4", "5"] }, { q:"Rak'a de Maghrib ?", a:"3", w:["2", "4", "5"] }, { q:"Rak'a de Dhuhr ?", a:"4", w:["2", "3", "5"] }, { q:"Première étape de la prière ?", a:"Takbir", w:["Ruku", "Fatiha", "Sujud"] }, { q:"Que dit-on en se prosternant ?", a:"Subhana rabbiyal a'la", w:["Subhana rabbiyal adhim", "Allahu Akbar", "Rabbighfir li"] }, { q:"Salutation finale ?", a:"As-salamu alaykum wa rahmatullah", w:["Allahu Akbar", "Al-hamdu lillah", "SubhanAllah"] }]; shuffle(pos).slice(0, 4).forEach(p => { qs.push({ kind:'prayer-qa', question:p.q, hint:"Connaissance de la prière", options: shuffle([p.a, ...p.w]), answer: p.a }); }); }
     return shuffle(qs).slice(0, n);
 }
-function startQuiz(type) {
-    stopCurrentAudio();
-    const questions = buildQuestions(type, 10);
-    if (!questions.length) { showToast('Pas assez de contenu'); return; }
-    combo = 0;
-    currentQuiz = { type, questions, index: 0, score: 0 };
-    renderQuiz();
-}
-function startDailyChallenge() {
-    if (state.lastDailyChallenge === todayKey()) { showToast('✅ Défi déjà terminé !'); return; }
-    switchView('exercises');
-    setTimeout(() => {
-        combo = 0;
-        currentQuiz = { type:'daily', questions:buildQuestions('mix', 5), index:0, score:0, isDaily:true };
-        renderQuiz();
-    }, 200);
-}
+function startQuiz(type) { stopCurrentAudio(); const questions = buildQuestions(type, 10); if (!questions.length) { showToast('Pas assez de contenu'); return; } combo = 0; currentQuiz = { type, questions, index: 0, score: 0 }; renderQuiz(); }
+function startDailyChallenge() { if (state.lastDailyChallenge === todayKey()) { showToast('✅ Défi déjà terminé !'); return; } switchView('exercises'); setTimeout(() => { combo = 0; currentQuiz = { type:'daily', questions:buildQuestions('mix', 5), index:0, score:0, isDaily:true }; renderQuiz(); }, 200); }
 function renderQuiz() {
-    const area = document.getElementById('quiz-area');
-    if (!currentQuiz) return;
-    if (currentQuiz.index >= currentQuiz.questions.length) { renderQuizResult(); return; }
-    const q = currentQuiz.questions[currentQuiz.index];
-    const total = currentQuiz.questions.length;
+    const area = document.getElementById('quiz-area'); if (!currentQuiz) return; if (currentQuiz.index >= currentQuiz.questions.length) { renderQuizResult(); return; }
+    const q = currentQuiz.questions[currentQuiz.index]; const total = currentQuiz.questions.length;
     let qHTML = '';
     if (q.kind === 'letter') qHTML = '<div class="big">' + q.question + '</div>';
-    else if (q.kind === 'vocab' || q.kind === 'number' || q.kind === 'dua' || q.kind === 'prayer') {
-        qHTML = '<div class="big">' + q.question + '</div>';
-        if (q.translit) qHTML += '<div style="color:var(--text-dim); font-style:italic; font-size:0.85rem;">' + q.translit + '</div>';
-    } else if (q.kind === 'verse') {
-        qHTML = '<div style="font-family:\'Amiri\',serif; font-size:1.7rem; color:var(--gold); direction:rtl; line-height:1.8; margin-bottom:0.6rem;">' + q.question + '</div>';
-    } else if (q.kind === 'prayer-qa') {
-        qHTML = '<div style="font-size:1.05rem; line-height:1.5;">' + q.question + '</div>';
-    }
+    else if (q.kind === 'vocab' || q.kind === 'number' || q.kind === 'dua' || q.kind === 'prayer') { qHTML = '<div class="big">' + q.question + '</div>'; if (q.translit) qHTML += '<div style="color:var(--text-dim); font-style:italic; font-size:0.85rem;">' + q.translit + '</div>'; }
+    else if (q.kind === 'verse') { qHTML = '<div style="font-family:\'Amiri\',serif; font-size:1.7rem; color:var(--gold); direction:rtl; line-height:1.8; margin-bottom:0.6rem;">' + q.question + '</div>'; }
+    else if (q.kind === 'prayer-qa') { qHTML = '<div style="font-size:1.05rem; line-height:1.5;">' + q.question + '</div>'; }
     const comboHTML = combo >= 2 ? `<span class="combo-indicator">🔥 ×${combo}</span>` : '';
     area.innerHTML = `
         <div class="quiz-panel">
-            <div class="quiz-progress">
-                <span>${currentQuiz.isDaily ? '🌅 Défi — ' : ''}Q${currentQuiz.index + 1}/${total} ${comboHTML}</span>
-                <span>Score : ${currentQuiz.score} ⭐</span>
-            </div>
-            <div class="progress-bar" style="margin-bottom:1rem;">
-                <div class="progress-fill" style="width:${(currentQuiz.index / total) * 100}%"></div>
-            </div>
-            <div class="quiz-question">
-                ${qHTML}
-                <div class="hint" style="margin-top:0.8rem;">${q.hint || ''}</div>
-            </div>
-            <div class="quiz-options">
-                ${q.options.map(o => `<button class="quiz-option" data-answer="${escapeAttr(o)}">${escapeHTML(o)}</button>`).join('')}
-            </div>
+            <div class="quiz-progress"><span>${currentQuiz.isDaily ? '🌅 Défi — ' : ''}Q${currentQuiz.index + 1}/${total} ${comboHTML}</span><span>Score : ${currentQuiz.score} ⭐</span></div>
+            <div class="progress-bar" style="margin-bottom:1rem;"><div class="progress-fill" style="width:${(currentQuiz.index / total) * 100}%"></div></div>
+            <div class="quiz-question">${qHTML}<div class="hint" style="margin-top:0.8rem;">${q.hint || ''}</div></div>
+            <div class="quiz-options">${q.options.map(o => `<button class="quiz-option" data-answer="${escapeAttr(o)}">${escapeHTML(o)}</button>`).join('')}</div>
             <div class="quiz-feedback" id="quiz-feedback"></div>
         </div>
     `;
-    area.querySelectorAll('.quiz-option').forEach(btn => {
-        btn.addEventListener('click', () => answerQuiz(btn.getAttribute('data-answer'), btn));
-    });
+    area.querySelectorAll('.quiz-option').forEach(btn => { btn.addEventListener('click', () => answerQuiz(btn.getAttribute('data-answer'), btn)); });
 }
 function answerQuiz(choice, btn) {
-    const q = currentQuiz.questions[currentQuiz.index];
-    const opts = document.querySelectorAll('.quiz-option');
-    opts.forEach(o => o.disabled = true);
+    const q = currentQuiz.questions[currentQuiz.index]; const opts = document.querySelectorAll('.quiz-option'); opts.forEach(o => o.disabled = true);
     const correct = choice === q.answer;
     if (correct) {
-        btn.classList.add('correct');
-        currentQuiz.score++;
-        state.stats.correct++;
-        combo++;
-        saveState();
-        let bonus = 10;
-        if (combo === 3) bonus = 15;
-        else if (combo >= 5) bonus = 20;
-        else if (combo >= 2) bonus = 12;
-        addXP(bonus, combo >= 3 ? 'Combo ×' + combo + ' !' : 'Bonne réponse');
-        playSoundCorrect();
-        document.getElementById('quiz-feedback').textContent = combo >= 3 ? '🔥 Combo ! Bonne réponse !' : '✅ Bonne réponse !';
-        document.getElementById('quiz-feedback').className = 'quiz-feedback ok';
+        btn.classList.add('correct'); currentQuiz.score++; state.stats.correct++; combo++; saveState();
+        let bonus = 10; if (combo === 3) bonus = 15; else if (combo >= 5) bonus = 20; else if (combo >= 2) bonus = 12;
+        addXP(bonus, combo >= 3 ? 'Combo ×' + combo + ' !' : 'Bonne réponse'); playSoundCorrect();
+        document.getElementById('quiz-feedback').textContent = combo >= 3 ? '🔥 Combo ! Bonne réponse !' : '✅ Bonne réponse !'; document.getElementById('quiz-feedback').className = 'quiz-feedback ok';
     } else {
-        btn.classList.add('wrong');
-        state.stats.wrong++;
-        combo = 0;
-        opts.forEach(o => { if (o.getAttribute('data-answer') === q.answer) o.classList.add('correct'); });
-        saveState();
-        playSoundWrong();
-        document.getElementById('quiz-feedback').textContent = '❌ Réponse : ' + q.answer;
-        document.getElementById('quiz-feedback').className = 'quiz-feedback ko';
+        btn.classList.add('wrong'); state.stats.wrong++; combo = 0; opts.forEach(o => { if (o.getAttribute('data-answer') === q.answer) o.classList.add('correct'); }); saveState(); playSoundWrong();
+        document.getElementById('quiz-feedback').textContent = '❌ Réponse : ' + q.answer; document.getElementById('quiz-feedback').className = 'quiz-feedback ko';
     }
-    updateHeader();
-    setTimeout(() => { currentQuiz.index++; renderQuiz(); }, 1400);
+    updateHeader(); setTimeout(() => { currentQuiz.index++; renderQuiz(); }, 1400);
 }
 function renderQuizResult() {
-    const area = document.getElementById('quiz-area');
-    const total = currentQuiz.questions.length;
-    const score = currentQuiz.score;
-    const pct = Math.round((score / total) * 100);
-    const perfect = score === total;
+    const area = document.getElementById('quiz-area'); const total = currentQuiz.questions.length; const score = currentQuiz.score; const pct = Math.round((score / total) * 100); const perfect = score === total;
     if (!state.stats.history) state.stats.history = [];
     state.stats.history.push({ date: Date.now(), type: currentQuiz.isDaily ? 'daily' : currentQuiz.type, score, total });
     if (state.stats.history.length > 100) state.stats.history = state.stats.history.slice(-100);
-    if (perfect) { awardBadge('perfect-quiz'); confetti(100); }
-    awardBadge('first-quiz');
-    if (currentQuiz.isDaily) {
-        state.lastDailyChallenge = todayKey();
-        if (score >= 3) addXP(50, 'Défi du jour !');
-    }
+    if (perfect) { awardBadge('perfect-quiz'); confetti(100); } awardBadge('first-quiz');
+    if (currentQuiz.isDaily) { state.lastDailyChallenge = todayKey(); if (score >= 3) addXP(50, 'Défi du jour !'); }
     saveState();
-    let emoji = '😊', title = 'Pas mal !';
-    if (pct === 100) { emoji = '🏆'; title = 'Parfait !'; }
-    else if (pct >= 80) { emoji = '🎉'; title = 'Excellent !'; }
-    else if (pct >= 60) { emoji = '👍'; title = 'Bien joué !'; }
-    else if (pct >= 40) { emoji = '💪'; title = 'Continue !'; }
-    else { emoji = '📚'; title = 'À réviser'; }
-    area.innerHTML = `
-        <div class="quiz-panel result-panel">
-            <div class="big-emoji">${emoji}</div>
-            <div class="result-title">${title}</div>
-            <div class="result-score">${score} / ${total} (${pct}%)</div>
-            ${currentQuiz.isDaily ? '<p style="color:var(--gold); margin-bottom:1rem;">🌅 Défi du jour terminé !</p>' : ''}
-            <div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;">
-                <button class="btn btn-gold" id="replay-btn">🔄 Rejouer</button>
-                <button class="btn btn-ghost" onclick="switchView('exercises')">← Autres exercices</button>
-            </div>
-        </div>
-    `;
-    document.getElementById('replay-btn').addEventListener('click', () => {
-        startQuiz(currentQuiz.isDaily ? 'mix' : currentQuiz.type);
-    });
+    let emoji = '😊', title = 'Pas mal !'; if (pct === 100) { emoji = '🏆'; title = 'Parfait !'; } else if (pct >= 80) { emoji = '🎉'; title = 'Excellent !'; } else if (pct >= 60) { emoji = '👍'; title = 'Bien joué !'; } else if (pct >= 40) { emoji = '💪'; title = 'Continue !'; } else { emoji = '📚'; title = 'À réviser'; }
+    area.innerHTML = `<div class="quiz-panel result-panel"><div class="big-emoji">${emoji}</div><div class="result-title">${title}</div><div class="result-score">${score} / ${total} (${pct}%)</div>${currentQuiz.isDaily ? '<p style="color:var(--gold); margin-bottom:1rem;">🌅 Défi du jour terminé !</p>' : ''}<div style="display:flex; gap:0.5rem; justify-content:center; flex-wrap:wrap;"><button class="btn btn-gold" id="replay-btn">🔄 Rejouer</button><button class="btn btn-ghost" onclick="switchView('exercises')">← Autres exercices</button></div></div>`;
+    document.getElementById('replay-btn').addEventListener('click', () => { startQuiz(currentQuiz.isDaily ? 'mix' : currentQuiz.type); });
     updateMascotTip(pct >= 80 ? "🎉 Excellent ! Continue comme ça !" : pct >= 50 ? "👍 Bien joué, continue !" : "💪 N'abandonne pas !");
 }
 
 (function init() {
-    applyTheme();
-    updateStreak();
-    checkBadges();
-    updateHeader();
-    renderHome();
-    initVoices();
-    document.getElementById('modal').addEventListener('click', e => {
-        if (e.target.id === 'modal') closeModal();
-    });
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') closeModal();
-    });
-    setInterval(() => {
-        if (Math.random() < 0.15) {
-            updateMascotTip(MASCOT_TIPS[Math.floor(Math.random() * MASCOT_TIPS.length)]);
-        }
-    }, 12000);
+    applyTheme(); updateStreak(); checkBadges(); updateHeader(); renderHome(); initVoices();
+    document.getElementById('modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    setInterval(() => { if (Math.random() < 0.15) { updateMascotTip(MASCOT_TIPS[Math.floor(Math.random() * MASCOT_TIPS.length)]); } }, 12000);
     saveState();
 })();
 </script>
